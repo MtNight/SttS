@@ -69,6 +69,9 @@ public class PlayerMove : MonoBehaviour {
             jumping = false;
             rigid.velocity = Vector3.zero;
             rigid.gravityScale = 0;
+            Vector3 i = transform.position;
+            i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f + 0.86f;
+            transform.position = i;
         }
         else if (other.tag == "Platform")
         {
@@ -78,7 +81,7 @@ public class PlayerMove : MonoBehaviour {
                 rigid.velocity = Vector3.zero;
                 rigid.gravityScale = 0;
                 Vector3 i = transform.position;
-                i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y + 0.725f;
+                i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f + 0.86f;
                 transform.position = i;
             }
         }
@@ -90,7 +93,7 @@ public class PlayerMove : MonoBehaviour {
                 rigid.velocity = Vector3.zero;
                 rigid.gravityScale = 0;
                 Vector3 i = transform.position;
-                i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * 3 + 0.725f;
+                i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f + 0.86f;
                 transform.position = i;
             }
         }
