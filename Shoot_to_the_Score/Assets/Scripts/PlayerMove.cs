@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             moveArrow = Vector3.left;
+            dir = Vector3.left;
             if (i.x != -Mathf.Abs(i.x))
             {
                 i.x = -Mathf.Abs(i.x);
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow))
         {
             moveArrow = Vector3.right;
+            dir = Vector3.right;
             if (i.x != Mathf.Abs(i.x))
             {
                 i.x = Mathf.Abs(i.x);
@@ -70,11 +72,14 @@ public class PlayerMove : MonoBehaviour {
         }
         else if (other.tag == "Platform")
         {
-            if (rigid.velocity.y <= 0 && transform.position.y - 0.6 > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y)
+            if (rigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y)
             {
                 jumping = false;
                 rigid.velocity = Vector3.zero;
                 rigid.gravityScale = 0;
+                Vector3 i = transform.position;
+                i.y = other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y + 0.725f;
+                transform.position = i;
             }
         }
     }
