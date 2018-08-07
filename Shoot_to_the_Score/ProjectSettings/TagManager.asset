@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Block
   - Range
+  - Bullet
   layers:
   - Default
   - TransparentFX

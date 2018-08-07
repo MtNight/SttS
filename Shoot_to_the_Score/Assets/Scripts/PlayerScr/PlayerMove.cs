@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {   //Player's overall moving
 
     public bool l;
     public bool r;
@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour {
     public int land;
     private float Speed;
     private Vector3 moveArrow;
-    private Vector3 dir;
+    public Vector3 dir;
     private Rigidbody2D rigid;
     private GameObject player;
 

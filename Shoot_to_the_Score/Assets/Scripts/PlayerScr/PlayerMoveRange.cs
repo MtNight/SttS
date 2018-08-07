@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveRange : MonoBehaviour {
+public class PlayerMoveRange : MonoBehaviour {   //Player's moving under block and both side of block
 
     private GameObject player;
     private Rigidbody2D prigid;

@@ -11,6 +11,8 @@ public class UImanage : MonoBehaviour {
 	void Start () {
         scenenum = 0;
 		load.gameObject.SetActive(true);
+
+        Screen.SetResolution(1600, 900, false);
     }
 
     private void Awake()

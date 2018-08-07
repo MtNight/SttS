@@ -61,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraMove.cs" />
+    <Compile Include="Assets\Scripts\pBullet.cs" />
+    <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMoveRange.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Scenemoving.cs" />
