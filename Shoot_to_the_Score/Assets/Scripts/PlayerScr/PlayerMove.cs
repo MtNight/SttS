@@ -29,16 +29,6 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         //move
         moveArrow = Vector3.zero;
         Vector3 i = transform.localScale;
-        if (Input.GetKey(KeyCode.RightArrow) && r == true)
-        {
-            moveArrow = Vector3.right;
-            dir = Vector3.right;
-            if (i.x != Mathf.Abs(i.x))
-            {
-                i.x = Mathf.Abs(i.x);
-                transform.localScale = i;
-            }
-        }
         if (Input.GetKey(KeyCode.LeftArrow) && l == true)
         {
             moveArrow = Vector3.left;
@@ -49,13 +39,23 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
                 transform.localScale = i;
             }
         }
+        if (Input.GetKey(KeyCode.RightArrow) && r == true)
+        {
+            moveArrow = Vector3.right;
+            dir = Vector3.right;
+            if (i.x != Mathf.Abs(i.x))
+            {
+                i.x = Mathf.Abs(i.x);
+                transform.localScale = i;
+            }
+        }
         transform.position += moveArrow * Speed * Time.deltaTime;
 
         //jump
         if (jumping == true)
         {
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKey(KeyCode.Space))
         {
             jumping = true;
             rigid.velocity = Vector3.zero;
@@ -79,7 +79,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         else if (other.tag == "Platform")
         {
             land += 1;
-            if (rigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y)
+            if (rigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y)
             {
                 jumping = false;
                 rigid.velocity = Vector3.zero;
@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         else if (other.tag == "Block")
         {
             land += 1;
-            if (rigid.velocity.y <= 0 && transform.position.y - 0.85f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y)
+            if (rigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f)
             {
                 jumping = false;
                 rigid.velocity = Vector3.zero;
@@ -105,22 +105,20 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (jumping == true)
+        if (other.tag == "Land" || other.tag == "Platform" || other.tag == "Block")
         {
-            if (rigid.velocity.y == 0)
+            if (jumping == true)
             {
-                jumping = false;
+                if (rigid.velocity.y == 0)
+                {
+                    jumping = false;
+                }
             }
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Land")
-        {
-            rigid.gravityScale = 2;
-            land -= 1;
-        }
-        else if (other.tag == "Platform" || other.tag == "Block")
+        if (other.tag == "Land" || other.tag == "Platform" || other.tag == "Block")
         {
             land -= 1;
             if (rigid.velocity.y >= 0)

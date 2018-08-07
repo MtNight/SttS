@@ -10,13 +10,17 @@ public class pBullet : MonoBehaviour {   //Bullet flying code
 
 	void Start () {
         speed = 10.0f;
-        if (GameObject.Find("Player").transform.position.x > transform.position.x)
+        dir = Vector3.right;
+        if (GameObject.Find("Player") != null)
         {
-            dir = Vector3.left;
-        }
-        else
-        {
-            dir = Vector3.right;
+            if (GameObject.Find("Player").transform.position.x > transform.position.x)
+            {
+                dir = Vector3.left;
+            }
+            else
+            {
+                dir = Vector3.right;
+            }
         }
 	}
 	

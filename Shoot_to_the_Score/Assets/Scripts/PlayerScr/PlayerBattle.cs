@@ -50,7 +50,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 dir = transform.parent.gameObject.GetComponent<PlayerMove>().dir / 5;
                 dir += transform.position;
                 dir.z = 6;
-                GameObject i = Instantiate(bullet, dir, Quaternion.Euler(0, 0, 0));
+                Instantiate(bullet, dir, Quaternion.Euler(0, 0, 0));
                 StartCoroutine(ShootCool(1.0f));
             }
         }
