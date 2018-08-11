@@ -7,11 +7,15 @@ public class Teleport : MonoBehaviour {
     private int tnum;
 
 	void Start () {
-        if (transform.position.x == 26 && transform.position.y == -0.5)
+        if (transform.position.x == 36 && transform.position.y == -20.5)
         {
             tnum = 0;
         }
-	}
+        else if (transform.position.x == 36 && transform.position.y == -41)
+        {
+            tnum = 1;
+        }
+    }
 	
 	void Update () {
 		
@@ -26,6 +30,7 @@ public class Teleport : MonoBehaviour {
                 switch (tnum)
                 {
                     case 0: other.transform.parent.gameObject.transform.position = new Vector3(3, -45, 5); break;
+                    case 1: other.transform.parent.gameObject.transform.position = new Vector3(3, -133.5f, 5); break;
                 }
                 
             }

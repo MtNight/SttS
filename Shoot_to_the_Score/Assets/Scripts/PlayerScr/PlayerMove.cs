@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         if (jumping == true)
         {
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             jumping = true;
             rigid.velocity = Vector3.zero;
@@ -109,9 +109,13 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         {
             if (jumping == true)
             {
-                if (rigid.velocity.y == 0)
+                if (rigid.velocity.y >= 0 || transform.position.y - 0.6f < other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f)
                 {
-                    jumping = false;
+                    rigid.gravityScale = 2;
+                    if (rigid.velocity.y == 0)
+                    {
+                        jumping = false;
+                    }
                 }
             }
         }
