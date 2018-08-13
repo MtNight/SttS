@@ -30,7 +30,7 @@ public class Teleport : MonoBehaviour {
                 switch (tnum)
                 {
                     case 0: other.transform.parent.gameObject.transform.position = new Vector3(3, -45, 5); break;
-                    case 1: other.transform.parent.gameObject.transform.position = new Vector3(3, -133.5f, 5); break;
+                    case 1: other.transform.parent.gameObject.transform.position = new Vector3(3, -111f, 5); break;
                 }
                 
             }

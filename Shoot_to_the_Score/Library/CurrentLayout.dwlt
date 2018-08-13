@@ -42,10 +42,10 @@ MonoBehaviour:
     y: 30
     width: 1520
     height: 714
-  m_MinSize: {x: 681, y: 492}
-  m_MaxSize: {x: 14004, y: 14042}
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 38
+  controlID: 40
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 39
+  controlID: 41
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 40
+  controlID: 42
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -397,20 +397,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Sprites
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\eskwo\Documents\Stts\SttS\Shoot_to_the_Score
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 72090000
-    m_LastClickedID: 2418
-    m_ExpandedIDs: 00000000ee0800002a0b000000ca9a3bffffff7f
+    m_SelectedIDs: 360b0000
+    m_LastClickedID: 2870
+    m_ExpandedIDs: 00000000f2080000360b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -438,7 +438,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ee0800002a0b0000
+    m_ExpandedIDs: 00000000f2080000360b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -466,7 +466,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000043300001e2c0000863200008e32000048090000464d0000d44d0000102d0000642e000000000000602c0000
+    m_ExpandedInstanceIDs: c6230000043300001e2c0000863200008e32000048090000464d0000d44d0000102d0000642e000000000000602c0000480b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -556,21 +556,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 26a4f8ffc2baf8ffe8c4f8fffef1f8ffcab2fbff6ef0fcff0405fdff2af7ffffeefbffff00000000000c000086810000e4830000
+    m_ExpandedIDs: 888bffffeaa9ffff56dcffffeefbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Block1-1
-      m_OriginalName: Block1-1
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -204896
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -606,14 +606,14 @@ MonoBehaviour:
     height: 422
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 71.70403416522026
+  lastFramingTime: 697.7817956537989
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 50.37669, y: -133.07466, z: 13.219949}
+    m_Target: {x: 15.58817, y: -17.801338, z: 1.6416607}
     speed: 2
-    m_Value: {x: 50.37669, y: -133.07466, z: 13.219949}
+    m_Value: {x: 15.58817, y: -17.801338, z: 1.6416607}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -645,9 +645,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.46375
+    m_Target: 21.1535
     speed: 2
-    m_Value: 7.46375
+    m_Value: 21.1535
   m_Ortho:
     m_Target: 1
     speed: 2

@@ -12,7 +12,6 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     private Vector3 moveArrow;
     public Vector3 dir;
     private Rigidbody2D rigid;
-    private GameObject player;
 
 	void Start () {
         l = true;   //왼쪽 이동 가능
