@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
 
+    private bool load;
     private bool cool;
     public int maxMagazine;
     private int mag;
@@ -12,6 +13,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     private GameObject bullet;
 
 	void Start () {
+        load = false;
         cool = false;
         maxMagazine = 30;
         mag = 30;
@@ -38,11 +40,11 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
             bullet = Resources.Load("NormalpBullet") as GameObject;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && cool == false)
+        if (Input.GetKeyDown(KeyCode.X) && cool == false && load == false)
         {
             if (mag == 0)
             {
-                //Find Magazine
+                //Find Magazine?
             }
             else
             {
@@ -54,6 +56,10 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 StartCoroutine(ShootCool(1.0f));
             }
         }
+        else if (Input.GetKeyDown(KeyCode.R) && load == false)
+        {
+            StartCoroutine(Reload(1.0f));
+        }
 	}
 
     IEnumerator ShootCool(float t)
@@ -63,6 +69,18 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
             cool = true;
             yield return new WaitForSeconds(0.1f * t);
             cool = false;
+            yield break;
+        }
+    }
+
+    IEnumerator Reload(float t)
+    {
+        while (true)
+        {
+            load = true;
+            yield return new WaitForSeconds(1.0f * t);
+            load = false;
+            mag = 30;
             yield break;
         }
     }

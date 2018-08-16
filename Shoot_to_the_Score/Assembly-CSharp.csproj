@@ -61,8 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\EnemyMove.cs" />
-    <Compile Include="Assets\Scripts\EnemyMoveRange.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\EnemyMove.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\EnemyMoveRange.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\pBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />
