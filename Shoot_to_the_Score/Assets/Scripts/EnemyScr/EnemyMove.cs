@@ -154,7 +154,10 @@ public class EnemyMove : MonoBehaviour {
         else if (move == 1)
         {
             jumpable = true;
-            transform.position += Speed * moveArrow * Time.deltaTime;
+            if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+            {
+                transform.position += Speed * moveArrow * Time.deltaTime;
+            }
             if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
             {
                 if (attackcool == false)
@@ -171,11 +174,17 @@ public class EnemyMove : MonoBehaviour {
             {
                 if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
                 {
-                    transform.position += Speed * moveArrow * Time.deltaTime;
+                    if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+                    {
+                        transform.position += Speed * moveArrow * Time.deltaTime;
+                    }
                 }
                 else
                 {
-                    transform.position += Speed * moveArrow * Time.deltaTime * 0.75f;
+                    if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+                    {
+                        transform.position += Speed * moveArrow * Time.deltaTime * 0.75f;
+                    }
                 }
                 if (attackcool == false)
                 {

@@ -26,7 +26,8 @@ public class EnemyMoveRange : MonoBehaviour {
     {
         if (other.tag == "Platform" || other.tag == "Block")
         {
-            range += 1; if (other.tag == "Block")
+            range += 1;
+            if (other.tag == "Block")
             {
                 block += 1;
                 if (erigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f)
@@ -37,23 +38,22 @@ public class EnemyMoveRange : MonoBehaviour {
                         enemy.GetComponent<EnemyMove>().l = true;
                     }
                 }
-                if (!(erigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f))
-                {
-
+                else {
                     if (erigid.velocity.y > 0 && transform.position.y + 0.6f < other.transform.position.y - other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f)
                     {
                         erigid.velocity = Vector3.zero;
                     }
                     else
                     {
-                        if (transform.position.x < other.transform.position.x && enemy.GetComponent<EnemyMove>().l != false)
-                        {
-                            enemy.GetComponent<EnemyMove>().r = false;
-                        }
-                        else if (transform.position.x > other.transform.position.x && enemy.GetComponent<EnemyMove>().r != false)
+                        if (transform.position.x >= other.transform.position.x && enemy.GetComponent<EnemyMove>().r != false)
                         {
                             enemy.GetComponent<EnemyMove>().l = false;
                         }
+                        else if (transform.position.x <= other.transform.position.x && enemy.GetComponent<EnemyMove>().l != false)
+                        {
+                            enemy.GetComponent<EnemyMove>().r = false;
+                        }
+
                         if (enemy.GetComponent<EnemyMove>().jumping == true)
                         {
                         }
