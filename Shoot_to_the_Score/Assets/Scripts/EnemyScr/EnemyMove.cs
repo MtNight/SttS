@@ -26,7 +26,7 @@ public class EnemyMove : MonoBehaviour {
         r = true;   //오른쪽 이동 가능
         jumping = true;   //점프 중임
         jumpable = false;
-        attackcool = false;
+        attackcool = true;
         land = 0;   //밟고 있는 땅 수
         move = -2;
         Speed = 2.5f;   //속도
@@ -54,7 +54,6 @@ public class EnemyMove : MonoBehaviour {
             if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10)
             {
                 StartCoroutine("Attack");
-                move = 0;
             }
         }
         else if (move == -1)
@@ -86,7 +85,6 @@ public class EnemyMove : MonoBehaviour {
             if (cam.transform.position.x - transform.position.x < 1 && cam.transform.position.x - transform.position.x > -19)
             {
                 StartCoroutine("Attack");
-                move = 0;
             }
         }
         else if (move == 0)
@@ -94,6 +92,20 @@ public class EnemyMove : MonoBehaviour {
             jumpable = false;
             moveArrow = Vector3.zero;
             Vector3 i = transform.localScale;
+            if (player.transform.position.x > transform.position.x)
+            {
+                dir = Vector3.right;
+            }
+            else
+            {
+                dir = Vector3.left;
+            }
+            if (i.x != -Mathf.Abs(i.x))
+            {
+                i.x = -Mathf.Abs(i.x);
+                transform.localScale = i;
+            }
+
             if (attackcool == true)
             {
                 if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10)
@@ -163,7 +175,6 @@ public class EnemyMove : MonoBehaviour {
                 if (attackcool == false)
                 {
                     StartCoroutine("Attack");
-                    move = 0;
                 }
             }
         }
@@ -189,7 +200,6 @@ public class EnemyMove : MonoBehaviour {
                 if (attackcool == false)
                 {
                     StartCoroutine("Attack");
-                    move = 0;
                 }
             }
             else
@@ -228,7 +238,6 @@ public class EnemyMove : MonoBehaviour {
             if (attackcool == false)
             {
                 StartCoroutine("Attack");
-                move = 0;
             }
         }
     }
@@ -308,8 +317,32 @@ public class EnemyMove : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.0f);
-            attackcool = true;
+            Vector3 i = transform.localScale;
+            if (player.transform.position.x > transform.position.x)
+            {
+                dir = Vector3.right;
+                if (i.x != Mathf.Abs(i.x))
+                {
+                    i.x = -Mathf.Abs(i.x);
+                    transform.localScale = i;
+                }
+            }
+            else
+            {
+                dir = Vector3.left;
+                if (i.x != -Mathf.Abs(i.x))
+                {
+                    i.x = -Mathf.Abs(i.x);
+                    transform.localScale = i;
+                }
+            }
+
+            move = 0;
+            yield return new WaitForSeconds(2.0f);
+            if (move == 0)
+            {
+                //attackcool = true;
+            }
             yield break;
         }
     }
@@ -317,7 +350,7 @@ public class EnemyMove : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.8f);
             attackcool = false;
             yield break;
         }
@@ -326,7 +359,7 @@ public class EnemyMove : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.6f);
             attackcool = false;
             yield break;
         }

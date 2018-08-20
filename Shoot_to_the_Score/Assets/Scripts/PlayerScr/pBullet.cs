@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class pBullet : MonoBehaviour {   //Bullet flying code
 
+    public int atk;
     protected int demage;
     private float speed;
     private Vector3 dir;

@@ -9,9 +9,10 @@ TagManager:
   - Platform
   - Block
   - Range
-  - Bullet
   - Teleport
   - Enemy
+  - pBullet
+  - eBullet
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class Teleport : MonoBehaviour {
         {
             tnum = 0;
         }
-        else if (transform.position.x == 36 && transform.position.y == -41)
+        else if (transform.position.x == 37.8f && transform.position.y == -40.5f)
         {
             tnum = 1;
         }
