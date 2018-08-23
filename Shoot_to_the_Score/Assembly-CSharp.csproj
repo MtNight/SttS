@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMoveRange.cs" />
+    <Compile Include="Assets\Scripts\Stair.cs" />
     <Compile Include="Assets\Scripts\SystemScr\CameraMove.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Scenemoving.cs" />
     <Compile Include="Assets\Scripts\SystemScr\UImanage.cs" />
