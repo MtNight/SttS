@@ -51,8 +51,9 @@ public class EnemyMove : MonoBehaviour {
         if (move == -2)
         {
             jumpable = false;
-            if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10)
+            if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
             {
+                attackcool = false;
                 StartCoroutine("Attack");
             }
         }
@@ -92,23 +93,10 @@ public class EnemyMove : MonoBehaviour {
             jumpable = false;
             moveArrow = Vector3.zero;
             Vector3 i = transform.localScale;
-            if (player.transform.position.x > transform.position.x)
-            {
-                dir = Vector3.right;
-            }
-            else
-            {
-                dir = Vector3.left;
-            }
-            if (i.x != -Mathf.Abs(i.x))
-            {
-                i.x = -Mathf.Abs(i.x);
-                transform.localScale = i;
-            }
 
-            if (attackcool == true)
+        if (attackcool == true)
             {
-                if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10)
+                if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
                 {
                     if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
                     {
@@ -323,7 +311,7 @@ public class EnemyMove : MonoBehaviour {
                 dir = Vector3.right;
                 if (i.x != Mathf.Abs(i.x))
                 {
-                    i.x = -Mathf.Abs(i.x);
+                    i.x = Mathf.Abs(i.x);
                     transform.localScale = i;
                 }
             }
@@ -341,7 +329,7 @@ public class EnemyMove : MonoBehaviour {
             yield return new WaitForSeconds(2.0f);
             if (move == 0)
             {
-                //attackcool = true;
+                attackcool = true;
             }
             yield break;
         }

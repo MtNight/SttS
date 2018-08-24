@@ -20,22 +20,22 @@ public class Teleport : MonoBehaviour {
             tnum = 1;
             active = true;
         }
-        else if (transform.position.x == 26.0f && transform.position.y == -113.0f)
+        else if (transform.position.x == 26.2f && transform.position.y == -113.0f)
         {
             tnum = 2;
             active = false;
         }
-        else if (transform.position.x == 7.0f && transform.position.y == -68.0f)
+        else if (transform.position.x == 5.3f && transform.position.y == -68.0f)
         {
             tnum = 3;
             active = true;
         }
-        else if (transform.position.x == 23.0f && transform.position.y == -101.75f)
+        else if (transform.position.x == 23.3f && transform.position.y == -101.75f)
         {
             tnum = 4;
             active = false;
         }
-        else if (transform.position.x == 50.0f && transform.position.y == -90.5f)
+        else if (transform.position.x == 50.1f && transform.position.y == -90.5f)
         {
             tnum = 5;
             active = false;
@@ -52,7 +52,7 @@ public class Teleport : MonoBehaviour {
         {
             if (other.transform.parent.gameObject.tag == "Player")
             {
-                if (/*active == */true)
+                if (active == true)
                 {
                     switch (tnum)
                     {

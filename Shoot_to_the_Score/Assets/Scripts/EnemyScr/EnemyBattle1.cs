@@ -11,6 +11,7 @@ public class EnemyBattle1 : MonoBehaviour {
     public Vector3 dir;
     public Vector3 pos;
     public GameObject bullet;
+    public GameObject cam;
 
     void Start()
     {
@@ -19,28 +20,36 @@ public class EnemyBattle1 : MonoBehaviour {
         hp = 100;
         dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
         bullet = Resources.Load("EfforteBullet") as GameObject;
+        cam = GameObject.Find("Game Camera");
     }
     
     void Update ()
     {
-        attack = transform.parent.gameObject.GetComponent<EnemyMove>().move;
-        if (attack == 0 && cool == false)
+        cam = GameObject.Find("Game Camera");
+        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
         {
-            cool = true;
-            StartCoroutine("Attack");
+            attack = transform.parent.gameObject.GetComponent<EnemyMove>().move;
+            if (attack == 0 && cool == false)
+            {
+                cool = true;
+                StartCoroutine("Attack");
+            }
         }
     }
     private void Shoot()
     {
-        dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
-        pos = transform.parent.gameObject.GetComponent<EnemyMove>().dir / 5.0f;
-        pos += transform.position;
-        pos.x += 0.1f;
-        pos.y -= 0.1f;
-        pos.z = 6;
-        GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
-        i.GetComponent<eBullet>().dir = dir;
-        i.GetComponent<eBullet>().atk = 30;
+        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
+        {
+            dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
+            pos = transform.parent.gameObject.GetComponent<EnemyMove>().dir / 5.0f;
+            pos += transform.position;
+            pos.x += 0.1f;
+            pos.y -= 0.1f;
+            pos.z = 6;
+            GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
+            i.GetComponent<eBullet>().dir = dir;
+            i.GetComponent<eBullet>().atk = 30;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
