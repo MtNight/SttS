@@ -22,7 +22,7 @@ public class Stair : MonoBehaviour {
             if (tel == true)
             {
                 player = GameObject.Find("Player");
-                if (player.transform.position.x > 15.5f && player.transform.position.y > -74)
+                if (player.transform.position.x > 15.2f && player.transform.position.y > -74)
                 {
                     Vector3 i = transform.position;
                     i.y -= 20;
