@@ -17,7 +17,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
 	void Start () {
         load = false;
         cool = false;
-        hp = 100;
+        hp = 3000;
         maxMagazine = 30;
         mag = 30;
         bulletKind = 0;
@@ -76,6 +76,10 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         {
             hp -= other.gameObject.GetComponent<eBullet>().atk;
             Destroy(other.gameObject);
+        }
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject.transform.parent.gameObject);
         }
     }
 

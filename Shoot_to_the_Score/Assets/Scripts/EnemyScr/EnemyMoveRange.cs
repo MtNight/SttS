@@ -54,14 +54,29 @@ public class EnemyMoveRange : MonoBehaviour {
                             enemy.GetComponent<EnemyMove>().r = false;
                         }
 
-                        if (enemy.GetComponent<EnemyMove>().jumping == true)
-                        {
-                        }
-                        else if (enemy.GetComponent<EnemyMove>().jumpable == true && enemy.GetComponent<EnemyMove>().player.transform.position.y <= enemy.transform.position.y)
+                        //if (enemy.GetComponent<EnemyMove>().jumping == true)
+                        //{
+                        //}
+                        //else if (enemy.GetComponent<EnemyMove>().jumpable == true && enemy.GetComponent<EnemyMove>().player.transform.position.y >= enemy.transform.position.y)
+                        //{
+                        //    enemy.GetComponent<EnemyMove>().jumping = true;
+                        //    erigid.velocity = Vector3.zero;
+                        //    erigid.AddForce(Vector3.up * 500.0f);
+                        //}
+                    }
+                }
+                if (enemy.GetComponent<EnemyMove>().land - range <= 1)
+                {
+                    if (enemy.GetComponent<EnemyMove>().jumping == true)
+                    {
+                    }
+                    else if (enemy.GetComponent<EnemyMove>().jumpable == true)
+                    {
+                        if ((enemy.GetComponent<EnemyMove>().move == 1 && enemy.GetComponent<EnemyMove>().player.transform.position.y > enemy.transform.position.y) || (enemy.GetComponent<EnemyMove>().move == 2 && Mathf.Abs(enemy.GetComponent<EnemyMove>().player.transform.position.y - enemy.transform.position.y) < 2))
                         {
                             enemy.GetComponent<EnemyMove>().jumping = true;
                             erigid.velocity = Vector3.zero;
-                            erigid.AddForce(Vector3.up * 500.0f);
+                            erigid.AddForce(Vector3.up * 510.0f);
                         }
                     }
                 }
@@ -73,7 +88,7 @@ public class EnemyMoveRange : MonoBehaviour {
         if (other.tag == "Block" || other.tag == "Platform")
         {
             range -= 1;
-            if (enemy.GetComponent<EnemyMove>().land - range <= 1)
+            if (enemy.GetComponent<EnemyMove>().land - range <= 2)
             {
                 if (enemy.GetComponent<EnemyMove>().jumping == true)
                 {
@@ -84,7 +99,7 @@ public class EnemyMoveRange : MonoBehaviour {
                     {
                         enemy.GetComponent<EnemyMove>().jumping = true;
                         erigid.velocity = Vector3.zero;
-                        erigid.AddForce(Vector3.up * 500.0f);
+                        erigid.AddForce(Vector3.up * 510.0f);
                     }
                 }
             }

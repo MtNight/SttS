@@ -26,7 +26,7 @@ public class EnemyBattle1 : MonoBehaviour {
     void Update ()
     {
         cam = GameObject.Find("Game Camera");
-        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
+        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
         {
             attack = transform.parent.gameObject.GetComponent<EnemyMove>().move;
             if (attack == 0 && cool == false)
@@ -38,7 +38,7 @@ public class EnemyBattle1 : MonoBehaviour {
     }
     private void Shoot()
     {
-        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 11.25f)
+        if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
         {
             dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
             pos = transform.parent.gameObject.GetComponent<EnemyMove>().dir / 5.0f;
@@ -48,7 +48,7 @@ public class EnemyBattle1 : MonoBehaviour {
             pos.z = 6;
             GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
             i.GetComponent<eBullet>().dir = dir;
-            i.GetComponent<eBullet>().atk = 30;
+            i.GetComponent<eBullet>().atk = 15;
         }
     }
 
@@ -58,6 +58,12 @@ public class EnemyBattle1 : MonoBehaviour {
         {
             hp -= other.gameObject.GetComponent<pBullet>().atk;
             Destroy(other.gameObject);
+        }
+
+        if (hp <= 0)
+        {
+            GameObject.Find("Event").GetComponent<Event>().kill += 1;
+            Destroy(this.gameObject.transform.parent.gameObject);
         }
     }
 

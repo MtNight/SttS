@@ -58,7 +58,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         {
             jumping = true;
             rigid.velocity = Vector3.zero;
-            rigid.AddForce(Vector3.up * 500.0f);
+            rigid.AddForce(Vector3.up * 510.0f);
         }
 
     }

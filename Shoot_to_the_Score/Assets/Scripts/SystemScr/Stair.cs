@@ -7,11 +7,13 @@ public class Stair : MonoBehaviour {
     private bool act;
     private bool tel;
     private GameObject player;
+    private GameObject evn;
 
     void Start () {
         act = false;
         tel = GameObject.Find("Teleport1-1").GetComponent<Teleport>().use;
         player = GameObject.Find("Player");
+        evn = GameObject.Find("Event");
 	}
 	
 	void Update ()
@@ -24,10 +26,14 @@ public class Stair : MonoBehaviour {
                 player = GameObject.Find("Player");
                 if (player.transform.position.x > 15.2f && player.transform.position.y > -74)
                 {
-                    Vector3 i = transform.position;
-                    i.y -= 20;
-                    transform.position = i;
-                    act = true;
+                    evn = GameObject.Find("Event");
+                    if (evn.GetComponent<Event>().kill >= 2)
+                    {
+                        Vector3 i = transform.position;
+                        i.y -= 20;
+                        transform.position = i;
+                        act = true;
+                    }
                 }
             }
         }
