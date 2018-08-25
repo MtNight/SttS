@@ -64,7 +64,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 StartCoroutine(ShootCool(1.0f));
             }
         }
-        else if (Input.GetKeyDown(KeyCode.R) && load == false)
+        else if (Input.GetKeyDown(KeyCode.A) && load == false)
         {
             StartCoroutine(Reload(1.0f));
         }

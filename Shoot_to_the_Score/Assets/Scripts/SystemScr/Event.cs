@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Event : MonoBehaviour {
 
+    private GameObject EO;
     private GameObject cam;
     private bool[] arr;
     private int pre;
     public int cur;
     public int kill;
+    public int add;
 
     void Start () {
+        EO= Resources.Load("EnemyO") as GameObject;
         cam = GameObject.Find("Game Camera");
         arr = new bool[14];
         for (int i = 0; i < 14; i++)
@@ -19,6 +22,7 @@ public class Event : MonoBehaviour {
         }
         cur = 0;
         kill = 0;
+        add = 0;
 	}
 	
 	void Update ()
@@ -48,20 +52,93 @@ public class Event : MonoBehaviour {
         {
             switch (cur)
             {
-                case 0: { if (kill >= 0) { arr[cur] = true; } break; }
-                case 1: { if (kill >= 2) { arr[cur] = true; } break; }
-                case 2: { if (kill >= 1) { arr[cur] = true; } break; }
-                case 3: { if (kill >= 2) { arr[cur] = true; } break; }
-                case 4: { if (kill >= 1) { arr[cur] = true; } break; }
-                case 5: { if (kill >= 2) { arr[cur] = true; } break; }
-                case 6: { if (kill >= 1) { arr[cur] = true; } break; }
-                case 7: { if (kill >= 0) { arr[cur] = true; } break; }
-                case 8: { if (kill >= 2) { arr[cur] = true; } break; }
-                case 9: { if (kill >= 3) { arr[cur] = true; } break; }
-                case 10: { if (kill >= 0) { arr[cur] = true; } break; }
-                case 11: { if (kill >= 0) { arr[cur] = true; } break; }
-                case 12: { if (kill >= 4) { arr[cur] = true; } break; }
-                case 13: { if (kill >= 2) { arr[cur] = true; } break; }
+                case 0: {
+                        if (kill >= 0) { arr[cur] = true; }
+                        break; }
+                case 1: {
+                        if (kill >= 2) { arr[cur] = true; }
+                        break; }
+                case 2:
+                    {
+                        if (add == 0)
+                        {
+                            StartCoroutine(CreateEnemy(1.0f, EO, Vector3.right));
+                        }
+                        if (kill >= 2) { arr[cur] = true; }
+                        break; }
+                case 3:
+                    {
+                        if (add == 1)
+                        {
+                            StartCoroutine(CreateEnemy(1.0f, EO, Vector3.right));
+                            StartCoroutine(CreateEnemy(1.0f, EO, Vector3.left));
+                        }
+                        if (kill >= 4) { arr[cur] = true; }
+                        break; }
+                case 4:
+                    {
+                        if (add == 3)
+                        {
+                            StartCoroutine(CreateEnemy(4.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(5.0f, EO, Vector3.left));
+                        }
+                        if (kill >= 3) { arr[cur] = true; }
+                        break; }
+                case 5: {
+                        if (kill >= 2) { arr[cur] = true; }
+                        break; }
+                case 6:
+                    {
+                        if (kill >= 1) { arr[cur] = true; }
+                        break; }
+                case 7: {
+                        if (kill >= 0) { arr[cur] = true; }
+                        break; }
+                case 8:
+                    {
+                        if (add == 5)
+                        {
+                            StartCoroutine(CreateEnemy(2.0f, EO, Vector3.right));
+                        }
+                        if (kill >= 3) { arr[cur] = true; }
+                        break; }
+                case 9: {
+                        if (kill >= 3) { arr[cur] = true; }
+                        break; }
+                case 10:
+                    {
+                        if (add == 6)
+                        {
+                            StartCoroutine(CreateEnemy(2.0f, EO, Vector3.right));
+                            StartCoroutine(CreateEnemy(3.0f, EO, Vector3.right));
+                        }
+                        if (kill >= 2) { arr[cur] = true; }
+                        break; }
+                case 11:
+                    {
+                        if (add == 8)
+                        {
+                            StartCoroutine(CreateEnemy(4.0f, EO, Vector3.right));
+                            StartCoroutine(CreateEnemy(4.5f, EO, Vector3.right));
+                            StartCoroutine(CreateEnemy(5.0f, EO, Vector3.right));
+                        }
+                        if (kill >= 3) { arr[cur] = true; }
+                        break; }
+                case 12:
+                    {
+                        if (add == 11)
+                        {
+                            StartCoroutine(CreateEnemy(6.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(7.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
+                        }
+                        if (kill >= 9) { arr[cur] = true; }
+                        break; }
+                case 13: {
+                        if (kill >= 2) { arr[cur] = true; }
+                        break; }
             }
             transform.position = cam.transform.position;
         }
@@ -71,5 +148,32 @@ public class Event : MonoBehaviour {
         }
 
         pre = cur;
+    }
+
+    IEnumerator CreateEnemy(float t, GameObject Enemy, Vector3 dir)
+    {
+        while (true)
+        {
+            int tmp = add;
+            if (add != -1)
+            {
+                add = -1;
+            }
+            yield return new WaitForSeconds(t);
+            Vector3 pos = transform.position + (dir * 11);
+            pos.y -= 3;
+            pos.z = 5;
+            GameObject i = Instantiate(Enemy, pos, Quaternion.Euler(0, 0, 0));
+            i.GetComponent<EnemyMove>().move = -1;
+            if (tmp != -1)
+            {
+                add = tmp + 1;
+            }
+            else
+            {
+                add += 1;
+            }
+            yield break;
+        }
     }
 }

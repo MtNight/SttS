@@ -30,8 +30,12 @@ public class EnemyMove : MonoBehaviour {
         jumpable = false;
         attackcool = true;
         land = 0;   //밟고 있는 땅 수
-        move = -2;
-        Speed = 3.0f;   //속도
+        if (move != -1)
+        {
+            move = -2;
+        }
+        random = Random.Range(-1, 1);
+        Speed = 3.0f - random;   //속도
         moveArrow = Vector3.zero;   //이동 방향
         dir = Vector3.left;   //보고 있는 방향
         player = GameObject.Find("Player");
@@ -85,8 +89,9 @@ public class EnemyMove : MonoBehaviour {
                 }
             }
             transform.position += Speed * moveArrow * Time.deltaTime;
-            if (cam.transform.position.x - transform.position.x < 1 && cam.transform.position.x - transform.position.x > -19)
+            if (cam.transform.position.x - transform.position.x > -9 && cam.transform.position.x - transform.position.x < 9)
             {
+                attackcool = false;
                 StartCoroutine("Attack");
             }
         }
