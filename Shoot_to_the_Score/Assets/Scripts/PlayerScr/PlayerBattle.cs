@@ -63,6 +63,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 mag -= 1;
                 dir = transform.parent.gameObject.GetComponent<PlayerMove>().dir / 5;
                 dir += transform.position;
+                dir.y -= 0.2f;
                 dir.z = 6;
                 GameObject i = Instantiate(bullet, dir, Quaternion.Euler(0, 0, 0));
                 i.GetComponent<pBullet>().atk = atk;
