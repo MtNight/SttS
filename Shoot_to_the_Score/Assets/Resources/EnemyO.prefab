@@ -252,6 +252,8 @@ MonoBehaviour:
   pos: {x: 0, y: 0, z: 0}
   bullet: {fileID: 0}
   cam: {fileID: 0}
+  ShootSound: {fileID: 8300000, guid: 9ac871adc1ed1f54c9e00e44b797e604, type: 3}
+  HitSound: {fileID: 8300000, guid: 0a663883b85af864b9d59345306dc7c3, type: 3}
 --- !u!114 &114473059840109200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422b9d3c7a0706548b6af9bb1ef08098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JumpSound: {fileID: 8300000, guid: bd34e9e29da56a94eb7bb8cf9185a7d7, type: 3}
 --- !u!212 &212364597033991132
 SpriteRenderer:
   m_ObjectHideFlags: 1

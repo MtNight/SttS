@@ -12,8 +12,10 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     private Vector3 moveArrow;
     public Vector3 dir;
     private Rigidbody2D rigid;
+    private AudioSource audioSource;
+    public AudioClip JumpSound;
 
-	void Start () {
+    void Start () {
         l = true;   //왼쪽 이동 가능
         r = true;   //오른쪽 이동 가능
         jumping = true;   //점프 가능
@@ -22,6 +24,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         moveArrow = Vector3.zero;   //이동 방향
         dir = Vector3.right;   //보고 있는 방향
         rigid = this.GetComponent<Rigidbody2D>();   //Rigidbody컴포넌트
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -59,6 +62,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
             jumping = true;
             rigid.velocity = Vector3.zero;
             rigid.AddForce(Vector3.up * 510.0f);
+            audioSource.PlayOneShot(JumpSound);
         }
 
     }

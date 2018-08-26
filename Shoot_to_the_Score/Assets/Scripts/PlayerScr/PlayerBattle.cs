@@ -13,8 +13,12 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     public int bulletKind;
     private Vector3 dir;
     private GameObject bullet;
+    private AudioSource audioSource;
+    public AudioClip ShootSound;
+    public AudioClip LoadSound;
+    public AudioClip HitSound;
 
-	void Start () {
+    void Start () {
         load = false;
         cool = false;
         hp = 3000;
@@ -23,6 +27,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         bulletKind = 0;
         dir = transform.parent.gameObject.GetComponent<PlayerMove>().dir;
         bullet = Resources.Load("NormalpBullet") as GameObject;
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -62,6 +67,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 GameObject i = Instantiate(bullet, dir, Quaternion.Euler(0, 0, 0));
                 i.GetComponent<pBullet>().atk = atk;
                 StartCoroutine(ShootCool(1.0f));
+                audioSource.PlayOneShot(ShootSound);
             }
         }
         else if (Input.GetKeyDown(KeyCode.A) && load == false)
@@ -76,6 +82,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         {
             hp -= other.gameObject.GetComponent<eBullet>().atk;
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(HitSound);
         }
         if (hp <= 0)
         {
@@ -98,6 +105,8 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     {
         while (true)
         {
+
+            audioSource.PlayOneShot(LoadSound);
             load = true;
             yield return new WaitForSeconds(1.0f * t);
             load = false;

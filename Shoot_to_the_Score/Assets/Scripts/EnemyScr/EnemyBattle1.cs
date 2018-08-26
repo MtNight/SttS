@@ -12,6 +12,9 @@ public class EnemyBattle1 : MonoBehaviour {
     public Vector3 pos;
     public GameObject bullet;
     public GameObject cam;
+    private AudioSource audioSource;
+    public AudioClip ShootSound;
+    public AudioClip HitSound;
 
     void Start()
     {
@@ -21,6 +24,7 @@ public class EnemyBattle1 : MonoBehaviour {
         dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
         bullet = Resources.Load("EfforteBullet") as GameObject;
         cam = GameObject.Find("Game Camera");
+        audioSource = GetComponent<AudioSource>();
     }
     
     void Update ()
@@ -49,6 +53,7 @@ public class EnemyBattle1 : MonoBehaviour {
             GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
             i.GetComponent<eBullet>().dir = dir;
             i.GetComponent<eBullet>().atk = 15;
+            audioSource.PlayOneShot(ShootSound);
         }
     }
 
@@ -58,6 +63,7 @@ public class EnemyBattle1 : MonoBehaviour {
         {
             hp -= other.gameObject.GetComponent<pBullet>().atk;
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(HitSound);
         }
 
         if (hp <= 0)

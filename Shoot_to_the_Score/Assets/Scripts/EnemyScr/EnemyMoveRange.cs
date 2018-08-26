@@ -8,6 +8,8 @@ public class EnemyMoveRange : MonoBehaviour {
     private int block;
     private GameObject enemy;
     private Rigidbody2D erigid;
+    private AudioSource audioSource;
+    public AudioClip JumpSound;
 
     void Start()
     {
@@ -15,6 +17,7 @@ public class EnemyMoveRange : MonoBehaviour {
         block = 0;
         enemy = transform.parent.gameObject;
         erigid = enemy.GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -77,6 +80,7 @@ public class EnemyMoveRange : MonoBehaviour {
                             enemy.GetComponent<EnemyMove>().jumping = true;
                             erigid.velocity = Vector3.zero;
                             erigid.AddForce(Vector3.up * 510.0f);
+                            audioSource.PlayOneShot(JumpSound);
                         }
                     }
                 }
@@ -100,6 +104,7 @@ public class EnemyMoveRange : MonoBehaviour {
                         enemy.GetComponent<EnemyMove>().jumping = true;
                         erigid.velocity = Vector3.zero;
                         erigid.AddForce(Vector3.up * 510.0f);
+                        audioSource.PlayOneShot(JumpSound);
                     }
                 }
             }
