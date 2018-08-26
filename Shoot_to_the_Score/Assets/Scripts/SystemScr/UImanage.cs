@@ -24,8 +24,8 @@ public class UImanage : MonoBehaviour {
         scenenum = 0;
 
         hp.minValue = 0;
-        hp.maxValue = 800;
-        hp.value = 800;
+        hp.maxValue = 1000;
+        hp.value = 1000;
 
         load.gameObject.SetActive(true);
         main1.gameObject.SetActive(false);

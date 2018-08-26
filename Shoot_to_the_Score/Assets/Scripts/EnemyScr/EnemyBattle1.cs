@@ -48,7 +48,6 @@ public class EnemyBattle1 : MonoBehaviour {
             pos = transform.parent.gameObject.GetComponent<EnemyMove>().dir / 5.0f;
             pos += transform.position;
             pos.x += 0.1f;
-            pos.y -= 0.1f;
             pos.z = 6;
             GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
             i.GetComponent<eBullet>().dir = dir;
