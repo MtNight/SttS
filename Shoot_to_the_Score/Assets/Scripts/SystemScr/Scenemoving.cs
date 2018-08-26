@@ -15,17 +15,28 @@ public class Scenemoving : MonoBehaviour {
     }
 
     void Update () {
-		
-	}
+
+    }
+    public void MtoG()
+    {
+        SceneManager.LoadScene("GameScene");
+        GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 2;
+    }
+    public void Exit()
+    {
+        Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
+    }
 
     IEnumerator LtoM()
     {
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            SceneManager.LoadScene("GameScene");   //LoadtoMain -> 임시로 GameScene이동
-            GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 2;
+            SceneManager.LoadScene("MainMenu");
+            GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 1;
             yield break;
         }
     }
+
 }
