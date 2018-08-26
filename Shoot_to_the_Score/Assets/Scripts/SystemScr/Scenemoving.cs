@@ -22,6 +22,11 @@ public class Scenemoving : MonoBehaviour {
         SceneManager.LoadScene("GameScene");
         GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 2;
     }
+    public void GtoM()
+    {
+        SceneManager.LoadScene("MainMenu");
+        GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 1;
+    }
     public void Exit()
     {
         Application.Quit();

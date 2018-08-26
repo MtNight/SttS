@@ -148,16 +148,13 @@ public class Event : MonoBehaviour {
                         break; }
                 case 12:
                     {
-                        if (add == 11)
+                        if (add == 21)
                         {
-                            if (add == 21)
-                            {
-                                StartCoroutine(CreateEnemy(6.0f, EO, Vector3.left));
-                                StartCoroutine(CreateEnemy(7.0f, EO, Vector3.left));
-                                StartCoroutine(CreateEnemy(8.0f, EO, Vector3.left));
-                                StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
-                                StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
-                            }
+                            StartCoroutine(CreateEnemy(6.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(7.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
                         }
                         if (kill >= 9) { arr[cur] = true; }
                         break; }

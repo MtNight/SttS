@@ -21,7 +21,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     void Start () {
         load = false;
         cool = false;
-        hp = 500;
+        hp = 800;
         maxMagazine = 30;
         mag = 30;
         bulletKind = 0;

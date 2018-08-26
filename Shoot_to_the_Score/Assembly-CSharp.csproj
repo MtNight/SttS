@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\SystemScr\Stair.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Teleport.cs" />
     <Compile Include="Assets\Scripts\SystemScr\UImanage.cs" />
+    <Compile Include="Assets\Scripts\Volume.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/eskwo/Documents/Stts/SttS/Shoot_to_the_Score/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

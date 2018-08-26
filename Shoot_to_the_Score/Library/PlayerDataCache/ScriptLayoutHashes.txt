@@ -154,7 +154,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 267fca1716fd908e8d008cdf7e86a292 Assembly-CSharp.dll:.Key
-4a1f6a7b13c6b5ebcb81ddd8c73db12f Assembly-CSharp.dll:.UImanage
+61a377eb150639c2c74c615d47c70dbc Assembly-CSharp.dll:.UImanage
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -165,3 +165,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 411545d4fa72329ed6a7fa77e24a654a Assembly-CSharp.dll:.EnemyBattle2
 5f0f7babb821858ce109816057a8a36d Assembly-CSharp.dll:.MainMenu
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Scenemoving
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Volume
