@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     private Rigidbody2D rigid;
     private AudioSource audioSource;
     public AudioClip JumpSound;
+    private Animator anim;
 
     void Start () {
         l = true;   //왼쪽 이동 가능
@@ -25,6 +26,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         dir = Vector3.right;   //보고 있는 방향
         rigid = this.GetComponent<Rigidbody2D>();   //Rigidbody컴포넌트
         audioSource = GetComponent<AudioSource>();
+        anim = this.GetComponent<Animator>();
     }
 	
 	void Update () {
@@ -65,6 +67,14 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
             audioSource.PlayOneShot(JumpSound);
         }
 
+        if (moveArrow.x == 0)
+        {
+            anim.SetBool("run", false);
+        }
+        else
+        {
+            anim.SetBool("run", true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
