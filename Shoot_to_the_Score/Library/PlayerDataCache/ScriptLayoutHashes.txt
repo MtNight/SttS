@@ -85,6 +85,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+411545d4fa72329ed6a7fa77e24a654a Assembly-CSharp.dll:.EnemyBattle3
 411545d4fa72329ed6a7fa77e24a654a Assembly-CSharp.dll:.EnemyBattle1
 c7aeb2275a910320ac1e2cf29601db9a Assembly-CSharp.dll:.PlayerBattle
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -161,5 +162,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 3bc8ca94863ceae6210b70e9e64683cf Assembly-CSharp.dll:.EnemyMoveRange
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+411545d4fa72329ed6a7fa77e24a654a Assembly-CSharp.dll:.EnemyBattle2
 5f0f7babb821858ce109816057a8a36d Assembly-CSharp.dll:.MainMenu
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Scenemoving

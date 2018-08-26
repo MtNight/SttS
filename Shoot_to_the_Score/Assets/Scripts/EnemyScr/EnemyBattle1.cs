@@ -22,7 +22,7 @@ public class EnemyBattle1 : MonoBehaviour {
         cool = false;
         hp = 100;
         dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
-        bullet = Resources.Load("EfforteBullet") as GameObject;
+        bullet = Resources.Load("TalenteBullet") as GameObject;
         cam = GameObject.Find("Game Camera");
         audioSource = GetComponent<AudioSource>();
     }
@@ -52,7 +52,7 @@ public class EnemyBattle1 : MonoBehaviour {
             pos.z = 6;
             GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
             i.GetComponent<eBullet>().dir = dir;
-            i.GetComponent<eBullet>().atk = 15;
+            i.GetComponent<eBullet>().atk = 10;
             audioSource.PlayOneShot(ShootSound);
         }
     }

@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemyScr\eBullet.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle1.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle2.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle3.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMoveRange.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />

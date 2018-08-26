@@ -19,7 +19,12 @@ public class UImanage : MonoBehaviour {
 
     void Start () {
         scenenum = 0;
-		load.gameObject.SetActive(true);
+
+        hp.minValue = 0;
+        hp.maxValue = 500;
+        hp.value = 500;
+
+        load.gameObject.SetActive(true);
         game1.gameObject.SetActive(false);
         game2.gameObject.SetActive(false);
         game3.gameObject.SetActive(false);
@@ -65,6 +70,19 @@ public class UImanage : MonoBehaviour {
         }
         else if (scenenum == 2)
         {
+            GameObject i = GameObject.Find("Event");
+            if (i.GetComponent<Event>().cur <= 1)
+            {
+                game1.text = "±¤Àå";
+            }
+            else if (i.GetComponent<Event>().cur <= 13)
+            {
+                game2.text = "µ¿Ãµ°ü";
+            }
+            i = GameObject.Find("pBeAttackRange");
+            game2.text = i.GetComponent<PlayerBattle>().mag + "/" + i.GetComponent<PlayerBattle>().maxMagazine;
+            hp.value = i.GetComponent<PlayerBattle>().hp;
+
             load.gameObject.SetActive(false);
             game1.gameObject.SetActive(true);
             game2.gameObject.SetActive(true);

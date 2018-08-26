@@ -21,6 +21,7 @@ public class EnemyMove : MonoBehaviour {
     private Rigidbody2D rigid;
     public GameObject player;
     private GameObject cam;
+    private Animator anim;
 
     void Start()
     {
@@ -41,7 +42,7 @@ public class EnemyMove : MonoBehaviour {
         player = GameObject.Find("Player");
         rigid = this.GetComponent<Rigidbody2D>();   //Rigidbody컴포넌트
         cam = GameObject.Find("Game Camera");
-
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -56,6 +57,7 @@ public class EnemyMove : MonoBehaviour {
         }
         if (move == -2)
         {
+            anim.SetBool("run", false);
             jumpable = false;
             if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
             {
@@ -65,6 +67,7 @@ public class EnemyMove : MonoBehaviour {
         }
         else if (move == -1)
         {
+            anim.SetBool("run", true);
             jumpable = false;
             moveArrow = Vector3.zero;
             Vector3 i = transform.localScale;
@@ -72,9 +75,9 @@ public class EnemyMove : MonoBehaviour {
             {
                 moveArrow = Vector3.right;
                 dir = Vector3.right;
-                if (i.x != Mathf.Abs(i.x))
+                if (i.x != -Mathf.Abs(i.x))
                 {
-                    i.x = Mathf.Abs(i.x);
+                    i.x = -Mathf.Abs(i.x);
                     transform.localScale = i;
                 }
             }
@@ -82,9 +85,9 @@ public class EnemyMove : MonoBehaviour {
             {
                 moveArrow = Vector3.left;
                 dir = Vector3.left;
-                if (i.x != -Mathf.Abs(i.x))
+                if (i.x != Mathf.Abs(i.x))
                 {
-                    i.x = -Mathf.Abs(i.x);
+                    i.x = Mathf.Abs(i.x);
                     transform.localScale = i;
                 }
             }
@@ -97,6 +100,7 @@ public class EnemyMove : MonoBehaviour {
         }
         else if (move == 0)
         {
+            anim.SetBool("run", false);
             random = Random.Range(0, 10);
             jumpable = false;
             moveArrow = Vector3.zero;
@@ -122,9 +126,9 @@ public class EnemyMove : MonoBehaviour {
                         {
                             moveArrow = Vector3.left;
                             dir = Vector3.left;
-                            if (i.x != -Mathf.Abs(i.x))
+                            if (i.x != Mathf.Abs(i.x))
                             {
-                                i.x = -Mathf.Abs(i.x);
+                                i.x = Mathf.Abs(i.x);
                                 transform.localScale = i;
                             }
                         }
@@ -132,9 +136,9 @@ public class EnemyMove : MonoBehaviour {
                         {
                             moveArrow = Vector3.right;
                             dir = Vector3.right;
-                            if (i.x != Mathf.Abs(i.x))
+                            if (i.x != -Mathf.Abs(i.x))
                             {
-                                i.x = Mathf.Abs(i.x);
+                                i.x = -Mathf.Abs(i.x);
                                 transform.localScale = i;
                             }
                         }
@@ -147,9 +151,9 @@ public class EnemyMove : MonoBehaviour {
                         {
                             moveArrow = Vector3.right;
                             dir = Vector3.right;
-                            if (i.x != Mathf.Abs(i.x))
+                            if (i.x != -Mathf.Abs(i.x))
                             {
-                                i.x = Mathf.Abs(i.x);
+                                i.x = -Mathf.Abs(i.x);
                                 transform.localScale = i;
                             }
                         }
@@ -157,9 +161,9 @@ public class EnemyMove : MonoBehaviour {
                         {
                             moveArrow = Vector3.left;
                             dir = Vector3.left;
-                            if (i.x != -Mathf.Abs(i.x))
+                            if (i.x != Mathf.Abs(i.x))
                             {
-                                i.x = -Mathf.Abs(i.x);
+                                i.x = Mathf.Abs(i.x);
                                 transform.localScale = i;
                             }
                         }
@@ -169,6 +173,7 @@ public class EnemyMove : MonoBehaviour {
         }
         else if (move == 1)
         {
+            anim.SetBool("run", true);
             jumpable = true;
             if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
             {
@@ -187,6 +192,7 @@ public class EnemyMove : MonoBehaviour {
         }
         else if (move == 2)
         {
+            anim.SetBool("run", true);
             jumpable = true;
             if (Mathf.Abs(cam.transform.position.x - transform.position.x) <= 9)
             {
@@ -219,9 +225,9 @@ public class EnemyMove : MonoBehaviour {
                     moveArrow = Vector3.left;
                     dir = Vector3.left;
                     Vector3 i = transform.localScale;
-                    if (i.x != -Mathf.Abs(i.x))
+                    if (i.x != Mathf.Abs(i.x))
                     {
-                        i.x = -Mathf.Abs(i.x);
+                        i.x = Mathf.Abs(i.x);
                         transform.localScale = i;
                     }
                 }
@@ -230,9 +236,9 @@ public class EnemyMove : MonoBehaviour {
                     moveArrow = Vector3.right;
                     dir = Vector3.right;
                     Vector3 i = transform.localScale;
-                    if (i.x != Mathf.Abs(i.x))
+                    if (i.x != -Mathf.Abs(i.x))
                     {
-                        i.x = Mathf.Abs(i.x);
+                        i.x = -Mathf.Abs(i.x);
                         transform.localScale = i;
                     }
                 }
@@ -331,18 +337,18 @@ public class EnemyMove : MonoBehaviour {
             if (player.transform.position.x > transform.position.x)
             {
                 dir = Vector3.right;
-                if (i.x != Mathf.Abs(i.x))
+                if (i.x != -Mathf.Abs(i.x))
                 {
-                    i.x = Mathf.Abs(i.x);
+                    i.x = -Mathf.Abs(i.x);
                     transform.localScale = i;
                 }
             }
             else
             {
                 dir = Vector3.left;
-                if (i.x != -Mathf.Abs(i.x))
+                if (i.x != Mathf.Abs(i.x))
                 {
-                    i.x = -Mathf.Abs(i.x);
+                    i.x = Mathf.Abs(i.x);
                     transform.localScale = i;
                 }
             }
