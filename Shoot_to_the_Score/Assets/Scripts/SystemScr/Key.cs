@@ -19,7 +19,7 @@ public class Key : MonoBehaviour {
             knum = 1;
             trigger = GameObject.Find("doorspr");
         }
-        else if (transform.position.x == 2 && transform.position.y == -86.0f)
+        else if (transform.position.x == 2 && transform.position.y == -86)
         {
             knum = 2;
             trigger = GameObject.Find("Teleport1-4");

@@ -63,7 +63,7 @@ public class Teleport : MonoBehaviour {
                         case 2: other.transform.parent.gameObject.transform.position = new Vector3(6, -78.9f, 5); use = true; break;
                         case 3: if (evn.GetComponent<Event>().kill >= 1) { other.transform.parent.gameObject.transform.position = new Vector3(36, -101f, 5); use = true; } break;
                         case 4: other.transform.parent.gameObject.transform.position = new Vector3(23, -90.5f, 5); use = true; break;
-                        case 5: if (evn.GetComponent<Event>().kill >= 21) { other.transform.parent.gameObject.transform.position = new Vector3(50, -80.3f, 5); use = true; } break;
+                        case 5: if (evn.GetComponent<Event>().kill >= 6) { other.transform.parent.gameObject.transform.position = new Vector3(50, -80.3f, 5); use = true; } break;
                     }
                 }
             }
