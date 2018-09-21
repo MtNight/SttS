@@ -112,14 +112,10 @@ public class EnemyBattle2 : MonoBehaviour
         pos.z = 5;
         GameObject i = Instantiate(Fre, pos, Quaternion.Euler(0, 0, 0));
         i.GetComponent<EnemyMove>().move = -1;
-        i = Instantiate(Fre, pos + Vector3.right, Quaternion.Euler(0, 0, 0));
-        i.GetComponent<EnemyMove>().move = -1;
 
         pos = transform.position + Vector3.left;
         pos.z = 5;
         i = Instantiate(Fre, pos, Quaternion.Euler(0, 0, 0));
-        i.GetComponent<EnemyMove>().move = -1;
-        i = Instantiate(Fre, pos + Vector3.left, Quaternion.Euler(0, 0, 0));
         i.GetComponent<EnemyMove>().move = -1;
     }
 }
