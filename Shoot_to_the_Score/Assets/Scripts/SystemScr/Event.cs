@@ -6,7 +6,6 @@ public class Event : MonoBehaviour {
 
     private GameObject EO;
     private GameObject EI;
-    private GameObject EIB;
     private GameObject cam;
     private bool[] arr;
     private int pre;
@@ -17,7 +16,6 @@ public class Event : MonoBehaviour {
     void Start () {
         EO= Resources.Load("EnemyO") as GameObject;
         EI = Resources.Load("EnemyI") as GameObject;
-        EIB = Resources.Load("EnemyIB") as GameObject;
         cam = GameObject.Find("Game Camera");
         arr = new bool[14];
         for (int i = 0; i < 14; i++)

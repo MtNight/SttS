@@ -11,6 +11,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     public int maxMagazine;
     public int mag;
     public int bulletKind;
+    public float multi;
     private Vector3 dir;
     private GameObject bullet;
     private AudioSource audioSource;
@@ -25,12 +26,15 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         maxMagazine = 30;
         mag = 30;
         bulletKind = 0;
+        multi = 1.0f;
         dir = transform.parent.gameObject.GetComponent<PlayerMove>().dir;
         bullet = Resources.Load("NormalpBullet") as GameObject;
         audioSource = GetComponent<AudioSource>();
     }
 	
 	void Update () {
+        if (hp > 500) { hp = 500; }
+        multi = transform.parent.gameObject.GetComponent<PlayerMove>().multi;
         if (bulletKind == 0)
         {
             bullet = Resources.Load("NormalpBullet") as GameObject;   //in Resources folder
@@ -56,7 +60,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         {
             if (mag == 0)
             {
-                StartCoroutine(Reload(1.0f));
+                StartCoroutine(Reload(1.0f / multi));
             }
             else
             {
@@ -67,13 +71,14 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
                 dir.z = 6;
                 GameObject i = Instantiate(bullet, dir, Quaternion.Euler(0, 0, 0));
                 i.GetComponent<pBullet>().atk = atk;
-                StartCoroutine(ShootCool(1.0f));
+                i.GetComponent<pBullet>().speed = 10.0f * multi;
+                StartCoroutine(ShootCool(1.0f / multi));
                 audioSource.PlayOneShot(ShootSound);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.A) && load == false)
+        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.R)) && load == false)
         {
-            StartCoroutine(Reload(1.0f));
+            StartCoroutine(Reload(1.0f / multi));
         }
 	}
 

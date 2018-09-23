@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     public bool jumping;
     public int land;
     private float Speed;
+    public float multi;
     private Vector3 moveArrow;
     public Vector3 dir;
     private Rigidbody2D rigid;
@@ -22,6 +23,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         jumping = true;   //점프 가능
         land = 0;   //밟고 있는 땅 수
         Speed = 5.0f;   //속도
+        multi = 1.0f;
         moveArrow = Vector3.zero;   //이동 방향
         dir = Vector3.right;   //보고 있는 방향
         rigid = this.GetComponent<Rigidbody2D>();   //Rigidbody컴포넌트
@@ -53,7 +55,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
                 transform.localScale = i;
             }
         }
-        transform.position += moveArrow * Speed * Time.deltaTime;
+        transform.position += moveArrow * Speed * Time.deltaTime * multi;
 
         //jump
         if (jumping == true)
@@ -145,6 +147,17 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
                     rigid.gravityScale = 2;
                 }
             }
+        }
+    }
+
+    public IEnumerator ED()
+    {
+        while (true)
+        {
+            multi = 1.5f;
+            yield return new WaitForSeconds(10.0f);
+            multi = 1.0f;
+            yield break;
         }
     }
 }
