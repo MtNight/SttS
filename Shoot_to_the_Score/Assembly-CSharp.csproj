@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BossStage.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\eBullet.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle1.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle2.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\Item_Cof.cs" />
     <Compile Include="Assets\Scripts\Item_ED.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\PlatMove.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\pBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />

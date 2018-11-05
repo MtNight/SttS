@@ -41,6 +41,11 @@ public class Teleport : MonoBehaviour {
             tnum = 5;
             active = false;
         }
+        else if (transform.position.x == 41.0f && transform.position.y == -78.5f)
+        {
+            tnum = 6;
+            active = true;
+        }
         evn = GameObject.Find("Event");
     }
 	
@@ -58,12 +63,13 @@ public class Teleport : MonoBehaviour {
                 {
                     switch (tnum)
                     {
-                        case 0: other.transform.parent.gameObject.transform.position = new Vector3(3, -45, 5); use = true; break;
-                        case 1: if (evn.GetComponent<Event>().kill >= 2) { other.transform.parent.gameObject.transform.position = new Vector3(1, -112, 5); use = true; } break;
+                        case 0: other.transform.parent.gameObject.transform.position = new Vector3(3, -45, 5); use = true; break;//1, -112, 5
+                        case 1: if (evn.GetComponent<Event>().kill >= 2) { other.transform.parent.gameObject.transform.position = new Vector3(98, -112, 5); use = true; } break;
                         case 2: other.transform.parent.gameObject.transform.position = new Vector3(6, -78.9f, 5); use = true; break;
                         case 3: if (evn.GetComponent<Event>().kill >= 1) { other.transform.parent.gameObject.transform.position = new Vector3(36, -101f, 5); use = true; } break;
                         case 4: other.transform.parent.gameObject.transform.position = new Vector3(23, -90.5f, 5); use = true; break;
                         case 5: if (evn.GetComponent<Event>().kill >= 6) { other.transform.parent.gameObject.transform.position = new Vector3(50, -80.3f, 5); use = true; } break;
+                        case 6: if (evn.GetComponent<Event>().kill >= 6) { other.transform.parent.gameObject.transform.position = new Vector3(98, -112f, 5); use = true; } break;
                     }
                 }
             }
