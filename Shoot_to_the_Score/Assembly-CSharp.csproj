@@ -61,29 +61,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BossStage.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\Boss.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\eBullet.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle1.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle2.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle3.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMoveRange.cs" />
-    <Compile Include="Assets\Scripts\Item_Cof.cs" />
-    <Compile Include="Assets\Scripts\Item_ED.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\PlatMove.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\pBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMoveRange.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\BossStage.cs" />
     <Compile Include="Assets\Scripts\SystemScr\CameraMove.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Event.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\Item_Cof.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\Item_ED.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Key.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\PlatMove.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Scenemoving.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Stair.cs" />
     <Compile Include="Assets\Scripts\SystemScr\Teleport.cs" />
     <Compile Include="Assets\Scripts\SystemScr\UImanage.cs" />
-    <Compile Include="Assets\Scripts\Volume.cs" />
+    <Compile Include="Assets\Scripts\SystemScr\Volume.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/eskwo/Documents/Stts/SttS/Shoot_to_the_Score/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
