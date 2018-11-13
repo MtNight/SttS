@@ -44,6 +44,10 @@ public class Event : MonoBehaviour {
         else if (cam.transform.position.x == 10 && cam.transform.position.y == -87.5f) { cur = 11; }
         else if (cam.transform.position.x == 50 && cam.transform.position.y == -87.5f) { cur = 12; }
         else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 13; }
+        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 14; }
+        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 15; }
+        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 16; }
+        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 17; }
 
         if (pre != cur)
         {

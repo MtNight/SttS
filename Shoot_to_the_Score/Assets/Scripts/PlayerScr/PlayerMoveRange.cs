@@ -10,7 +10,7 @@ public class PlayerMoveRange : MonoBehaviour {   //Player's moving under block a
 
 	void Start () {
         block = 0;
-        player = transform.parent.gameObject;
+        player = GameObject.Find("Player");
         prigid = player.GetComponent<Rigidbody2D>();
 	}
 	
@@ -20,7 +20,11 @@ public class PlayerMoveRange : MonoBehaviour {   //Player's moving under block a
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Block")
+        if (player == null)
+        {
+            player = transform.parent.gameObject;
+        }
+        if (other.tag == "Block" && player != null)
         {
             block += 1;
             if (prigid.velocity.y <= 0 && transform.position.y - 0.6f > other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y * other.transform.localScale.y * 0.5f)

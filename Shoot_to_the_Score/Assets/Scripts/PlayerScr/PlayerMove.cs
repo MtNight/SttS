@@ -145,10 +145,10 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
                 }
             }
         }
-        if (other.tag == "MPlatform")
+        else if (other.tag == "MPlatform")
         {
             mp = true;
-            transform.position += other.GetComponent<PlatMove>().move;
+            transform.position += other.gameObject.GetComponent<PlatMove>().move;
             if (jumping == true && transform.position.y >= other.transform.position.y)
             {
                 rigid.gravityScale = 0;

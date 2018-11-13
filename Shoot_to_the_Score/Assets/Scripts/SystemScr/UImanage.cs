@@ -16,9 +16,12 @@ public class UImanage : MonoBehaviour {
     public Text game2;
     public Text game3;
     public Slider hp;
+    public Slider bhp;
     public Text Die;
     public Button GtoM;
     public Image blackout;
+
+    private GameObject i, j, k;
 
     void Start () {
         scenenum = 0;
@@ -26,6 +29,10 @@ public class UImanage : MonoBehaviour {
         hp.minValue = 0;
         hp.maxValue = 500;
         hp.value = 500;
+
+        bhp.minValue = 0;
+        bhp.maxValue = 10000;
+        bhp.value = 10000;
 
         load.gameObject.SetActive(true);
         main1.gameObject.SetActive(false);
@@ -36,6 +43,7 @@ public class UImanage : MonoBehaviour {
         game2.gameObject.SetActive(false);
         game3.gameObject.SetActive(false);
         hp.gameObject.SetActive(false);
+        bhp.gameObject.SetActive(false);
         Die.gameObject.SetActive(false);
         GtoM.gameObject.SetActive(false);
         blackout.gameObject.SetActive(false);
@@ -46,16 +54,20 @@ public class UImanage : MonoBehaviour {
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        i = GameObject.Find("Event");
+        k = GameObject.Find("pBeAttackRange");
+        j = GameObject.Find("BOSS");
     }
 
     void Update () {
-        if (SceneManager.GetActiveScene().name == "LoadingScene")
+        if (scenenum == 0 && SceneManager.GetActiveScene().name == "LoadingScene")
             {
             load.gameObject.SetActive(true);
             game1.gameObject.SetActive(false);
             game2.gameObject.SetActive(false);
             game3.gameObject.SetActive(false);
             hp.gameObject.SetActive(false);
+            bhp.gameObject.SetActive(false);
             main1.gameObject.SetActive(false);
             main2.gameObject.SetActive(false);
             main3.gameObject.SetActive(false);
@@ -65,13 +77,14 @@ public class UImanage : MonoBehaviour {
             blackout.gameObject.SetActive(false);
 
         }
-        else if (SceneManager.GetActiveScene().name == "MainMenu")
+        else if (scenenum == 1 && SceneManager.GetActiveScene().name == "MainMenu")
         {
             load.gameObject.SetActive(false);
             game1.gameObject.SetActive(false);
             game2.gameObject.SetActive(false);
             game3.gameObject.SetActive(false);
             hp.gameObject.SetActive(false);
+            bhp.gameObject.SetActive(false);
             main1.gameObject.SetActive(true);
             main2.gameObject.SetActive(true);
             main3.gameObject.SetActive(true);
@@ -80,28 +93,48 @@ public class UImanage : MonoBehaviour {
             GtoM.gameObject.SetActive(false);
             blackout.gameObject.SetActive(false);
         }
-        else if (scenenum == 2)
+        else if (scenenum == 2 && SceneManager.GetActiveScene().name == "GameScene")
         {
+            if (i == null || j == null || k == null)
+            {
+                i = GameObject.Find("Event");
+                k = GameObject.Find("pBeAttackRange");
+                j = GameObject.Find("BOSS");
+            }
             if (GameObject.Find("Player") != null)
             {
-                GameObject i = GameObject.Find("Event");
                 if (i.GetComponent<Event>().cur <= 1)
                 {
-                    game1.text = "±¤Àå";
+                    game1.text = "Sejong Square";
                 }
                 else if (i.GetComponent<Event>().cur <= 13)
                 {
-                    game2.text = "µ¿Ãµ°ü";
+                    game1.text = "Library";
                 }
-                i = GameObject.Find("pBeAttackRange");
-                game2.text = i.GetComponent<PlayerBattle>().mag + "/" + i.GetComponent<PlayerBattle>().maxMagazine;
-                hp.value = i.GetComponent<PlayerBattle>().hp;
+                else if (i.GetComponent<Event>().cur <= 17)
+                {
+                    game1.text = "The Tower";
+                }
+                game2.text = k.GetComponent<PlayerBattle>().mag + "/" + k.GetComponent<PlayerBattle>().maxMagazine;
+                hp.value = k.GetComponent<PlayerBattle>().hp;
+                bhp.value = j.GetComponent<Boss>().hp;
 
                 load.gameObject.SetActive(false);
                 game1.gameObject.SetActive(true);
                 game2.gameObject.SetActive(true);
                 game3.gameObject.SetActive(true);
                 hp.gameObject.SetActive(true);
+                if (i.GetComponent<Event>().cur == 17)
+                {
+                    bhp.gameObject.SetActive(true);
+                }
+                else
+                {
+                    bhp.gameObject.SetActive(false);
+                }
+                Die.gameObject.SetActive(false);
+                GtoM.gameObject.SetActive(false);
+                blackout.gameObject.SetActive(false);
                 main1.gameObject.SetActive(false);
                 main2.gameObject.SetActive(false);
                 main3.gameObject.SetActive(false);
@@ -114,18 +147,19 @@ public class UImanage : MonoBehaviour {
                 game2.gameObject.SetActive(false);
                 game3.gameObject.SetActive(false);
                 hp.gameObject.SetActive(false);
+                bhp.gameObject.SetActive(false);
+                Die.gameObject.SetActive(true);
+                GtoM.gameObject.SetActive(true);
+                blackout.gameObject.SetActive(true);
+                Vector3 tmp = GameObject.Find("Game Camera").transform.position;
+                tmp.z = 1;
+                blackout.transform.position = tmp;
+                tmp = new Vector3(8, 8, 1);
+                blackout.transform.localScale = tmp;
                 main1.gameObject.SetActive(false);
                 main2.gameObject.SetActive(false);
                 main3.gameObject.SetActive(false);
                 main4.gameObject.SetActive(false);
-                Die.gameObject.SetActive(true);
-                GtoM.gameObject.SetActive(true);
-                blackout.gameObject.SetActive(true);
-                Vector3 i = GameObject.Find("Game Camera").transform.position;
-                i.z = 1;
-                blackout.transform.position = i;
-                i = new Vector3(8, 8, 1);
-                blackout.transform.localScale = i;
             }
         }
     }

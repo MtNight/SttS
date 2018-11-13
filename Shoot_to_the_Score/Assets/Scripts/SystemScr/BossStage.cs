@@ -10,6 +10,7 @@ public class BossStage : MonoBehaviour {
     private GameObject player;
     public GameObject wall;
     public GameObject elev;
+    private GameObject boss;
     private Animator anim;
 
     void Start () {
@@ -17,19 +18,19 @@ public class BossStage : MonoBehaviour {
         act = false;
         first = false;
         player = GameObject.Find("Player");
+        boss = GameObject.Find("BOSS");
         anim = this.GetComponent<Animator>();
     }
-
-    // Update is called once per frame
+    
     void Update() {
-        if (col == true && player.transform.position.y < -79)
+        if (col == true && player.transform.position.y < -78.95f && player.transform.position.x > 80)
         {
-            if (act == false)
-            {
-                act = true;
-                anim.SetBool("in", true);
-                elev.GetComponent<PlatMove>().act = true;
-            }
+            //if (act == false)
+            //{
+            //    act = true;
+            //    anim.SetBool("in", true);
+            //    elev.GetComponent<PlatMove>().act = true;
+            //}
         }
         else
         {
@@ -39,6 +40,8 @@ public class BossStage : MonoBehaviour {
                 anim.SetBool("in", false);
                 elev.GetComponent<PlatMove>().act = false;
                 elev.transform.position = new Vector3(90.0f, -119.625f, 16.0f);
+                boss.gameObject.SetActive(true);
+                boss.GetComponent<Boss>().stat = 0;
             }
         }
 	}
@@ -53,6 +56,12 @@ public class BossStage : MonoBehaviour {
                 col = true;
                 wall.transform.position = new Vector3(97.3f, -110f, 10);
                 elev.transform.position = new Vector3(90.0f, -105.625f, 16.0f);
+                if (act == false)
+                {
+                    act = true;
+                    anim.SetBool("in", true);
+                    elev.GetComponent<PlatMove>().act = true;
+                }
             }
         }
     }

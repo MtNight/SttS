@@ -19,13 +19,13 @@ public class Scenemoving : MonoBehaviour {
     }
     public void MtoG()
     {
-        SceneManager.LoadScene("GameScene");
         GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 2;
+        SceneManager.LoadScene("GameScene");
     }
     public void GtoM()
     {
-        SceneManager.LoadScene("MainMenu");
         GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 1;
+        SceneManager.LoadScene("MainMenu");
     }
     public void Exit()
     {
@@ -40,6 +40,8 @@ public class Scenemoving : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
             SceneManager.LoadScene("MainMenu");
             GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 1;
+            GameObject.Find("pMoverange").gameObject.SetActive(true);
+            gameObject.SetActive(false);
             yield break;
         }
     }
