@@ -90,6 +90,15 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
             Destroy(other.gameObject);
             audioSource.PlayOneShot(HitSound);
         }
+        else if (other.tag == "SAttack")
+        {
+            if (other.name == "Paper1")
+            {
+                hp -= other.gameObject.GetComponent<Paper>().atk;
+            }
+            Destroy(other.gameObject);
+            audioSource.PlayOneShot(HitSound);
+        }
         if (hp <= 0)
         {
             Destroy(this.gameObject.transform.parent.gameObject);

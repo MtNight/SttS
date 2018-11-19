@@ -130,7 +130,7 @@ public class UImanage : MonoBehaviour {
                 }
                 else
                 {
-                    bhp.gameObject.SetActive(false);
+                    bhp.gameObject.SetActive(true);   //수정 필요
                 }
                 Die.gameObject.SetActive(false);
                 GtoM.gameObject.SetActive(false);

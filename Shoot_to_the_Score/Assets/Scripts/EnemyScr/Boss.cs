@@ -1,31 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour {
 
     public int hp;
+    private int maxhp;
     public int stat;   //-3=비활성화 -2,-1=이동 0=서있기 1=패턴1(일반) 2=패턴2(종이) 3=패턴3(빔프로) 4=패턴4(탈모빔) 5=패턴5(문제)
     private bool invin;
     private bool start;
+    private bool shoot;
 
+    private int patt;
     private int rand;
+    private GameObject bullet;
 
+    private GameObject player;
     private SpriteRenderer SR;
     private Collider2D COL;
     private Animator anim;
     private AudioSource audioSource;
     public AudioClip HitSound;
+    public AudioClip BongSound;
+    public AudioClip MarkerSound;
+    public AudioClip PaperSound;
+    public AudioClip SBemaSound;
 
     void Start () {
-        hp = 10000;
+        maxhp = 20000;
+        hp = 20000;
         stat = -3;
         invin = true;
         start = false;
+        shoot = false;
 
+        player = GameObject.Find("Player");
         SR = GetComponent<SpriteRenderer>();
         COL = GetComponent<PolygonCollider2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -38,10 +52,25 @@ public class Boss : MonoBehaviour {
             if (start == false)
             {
                 start = true;
-                //hp create
             }
-            StartCoroutine(Move(0));
+            StartCoroutine(Attack1());
+            stat = 1;
             invin = false;
+        }
+        else if (stat == 1)
+        {
+            if (shoot == false)
+            {
+                patt = Random.Range(0, 2);
+                switch (patt)
+                {
+                    case 0: StartCoroutine(Attack2()); break;   //각 코루틴에서 stat변경.
+                    case 1: StartCoroutine(Attack2()); break;
+                    case 2: StartCoroutine(Attack2()); break;
+                    case 3: StartCoroutine(Attack2()); break;
+                    case 4: StartCoroutine(Attack2()); break;
+                }
+            }
         }
     }
 
@@ -64,11 +93,85 @@ public class Boss : MonoBehaviour {
         }
     }
 
-    IEnumerator Attack1()
+    IEnumerator Attack1()   //평타
     {
         while (true)
         {
-
+            shoot = true;
+            float angle = 20.0f;
+            for (int i = 10; i > 0; i--)
+            {
+                if (hp <= maxhp * i / 10.0f)
+                {
+                    yield return new WaitForSeconds(0.75f);
+                    if (i % 2 == 1)
+                    {
+                        Shoot(new Vector3(transform.localScale.x, transform.localScale.x * Mathf.Tan(angle / 2 * Mathf.Deg2Rad), transform.localScale.x * angle / 2));
+                        Shoot(new Vector3(transform.localScale.x, transform.localScale.x * Mathf.Tan(-angle / 2 * Mathf.Deg2Rad), transform.localScale.x * -angle / 2));
+                    }
+                    else
+                    {
+                        Shoot(new Vector3(transform.localScale.x, 0, 0));
+                        Shoot(new Vector3(transform.localScale.x, transform.localScale.x * Mathf.Tan(angle * Mathf.Deg2Rad), transform.localScale.x * angle));
+                        Shoot(new Vector3(transform.localScale.x, transform.localScale.x * Mathf.Tan(-angle * Mathf.Deg2Rad), transform.localScale.x * -angle));
+                    }
+                }
+                else
+                {
+                    shoot = false;
+                    yield break;
+                }
+            }
+            shoot = false;
+            yield break;
+        }
+    }
+    IEnumerator Attack2()   //종이
+    {
+        while (true)
+        {
+            stat = 2;
+            yield return new WaitForSeconds(1.0f);
+            anim.SetInteger("stat", 2);
+            yield return new WaitForSeconds(1.0f);
+            anim.SetInteger("stat", 0);
+            for (int i = 0; i < 15; i++)
+            {
+                Vector3 pos = new Vector3(0, -70, 5);
+                pos.x = Random.Range(82, 98);
+                rand = Random.Range(0, 3);
+                switch (rand)
+                {
+                    case 0: bullet = Resources.Load("Paper1") as GameObject; break;
+                    case 1: bullet = Resources.Load("Paper2") as GameObject; break;
+                    case 2: bullet = Resources.Load("Paper3") as GameObject; break;
+                }
+                GameObject tmp = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
+                tmp.GetComponent<Paper>().atk = 10;
+            }
+            yield return new WaitForSeconds(3.0f);
+            StartCoroutine(Move(0));
+            yield break;
+        }
+    }
+    IEnumerator Attack3()   //빔 프로젝터
+    {
+        while (true)
+        {
+            stat = 3;
+            yield return new WaitForSeconds(3.0f);
+            StartCoroutine(Move(0));
+            yield break;
+        }
+    }
+    IEnumerator Attack4()   //탈모빔
+    {
+        while (true)
+        {
+            stat = 2;
+            yield return new WaitForSeconds(3.0f);
+            StartCoroutine(Move(0));
+            yield break;
         }
     }
 
@@ -128,10 +231,41 @@ public class Boss : MonoBehaviour {
             invin = false;
             yield return new WaitForSeconds(1.2f);
             anim.SetInteger("stat", 0);
-            yield return new WaitForSeconds(10.0f);
+            yield return new WaitForSeconds(1.0f);
             stat = 0;
 
             yield break;
         }
+    }
+
+    private void Shoot(Vector3 dir)
+    {
+        rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0: bullet = Resources.Load("Marker1") as GameObject; break;
+            case 1: bullet = Resources.Load("Marker2") as GameObject; break;
+            case 2: bullet = Resources.Load("Marker3") as GameObject; break;
+        }
+        Vector3 pos = transform.position;
+        pos.z -= 1;
+        GameObject i = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
+
+        pos = i.transform.localScale;
+        pos.x *= dir.x;
+        i.transform.localScale = pos;
+
+        Vector3 line = player.transform.position - transform.position;
+
+        i.transform.Rotate(new Vector3(0, 0, dir.z + (Mathf.Atan(line.y / (float)line.x) * Mathf.Rad2Deg)));
+
+        line.y += (float)((line.x * line.x + line.y * line.y) * dir.y) / (line.x - line.y * dir.y);
+        dir.z = 0;
+        line.z = 0;
+        i.GetComponent<eBullet>().speed = 7.0f;
+        i.GetComponent<eBullet>().dir = line.normalized;
+
+        i.GetComponent<eBullet>().atk = 5;
+        audioSource.PlayOneShot(MarkerSound);
     }
 }

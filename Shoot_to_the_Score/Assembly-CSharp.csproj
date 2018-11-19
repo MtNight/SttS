@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\EnemyScr\EnemyBattle3.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\EnemyScr\EnemyMoveRange.cs" />
+    <Compile Include="Assets\Scripts\EnemyScr\Paper.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\pBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerBattle.cs" />
     <Compile Include="Assets\Scripts\PlayerScr\PlayerMove.cs" />

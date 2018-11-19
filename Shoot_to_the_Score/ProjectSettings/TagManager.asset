@@ -15,6 +15,7 @@ TagManager:
   - eBullet
   - Item
   - MPlatform
+  - SAttack
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class eBullet : MonoBehaviour {
 
     public int atk;
     protected int demage;
-    private float speed;
+    public float speed;
     public Vector3 dir;
 
     void Start()
