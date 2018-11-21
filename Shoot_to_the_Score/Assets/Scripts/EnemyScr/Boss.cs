@@ -25,11 +25,12 @@ public class Boss : MonoBehaviour {
     public AudioClip BongSound;
     public AudioClip MarkerSound;
     public AudioClip PaperSound;
-    public AudioClip SBemaSound;
+    public AudioClip SBeamSound;
+    public AudioClip MoveSound;
 
     void Start () {
-        maxhp = 20000;
-        hp = 20000;
+        maxhp = 10000;
+        hp = 10000;
         stat = -3;
         invin = true;
         start = false;
@@ -61,14 +62,12 @@ public class Boss : MonoBehaviour {
         {
             if (shoot == false)
             {
-                patt = Random.Range(0, 2);
+                patt = Random.Range(0, 3);
                 switch (patt)
                 {
                     case 0: StartCoroutine(Attack2()); break;   //각 코루틴에서 stat변경.
-                    case 1: StartCoroutine(Attack2()); break;
-                    case 2: StartCoroutine(Attack2()); break;
-                    case 3: StartCoroutine(Attack2()); break;
-                    case 4: StartCoroutine(Attack2()); break;
+                    case 1: StartCoroutine(Attack3()); break;
+                    case 2: StartCoroutine(Move(1)); break;
                 }
             }
         }
@@ -89,7 +88,7 @@ public class Boss : MonoBehaviour {
         if (hp <= 0)
         {
             GameObject.Find("Event").GetComponent<Event>().kill += 1;
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -131,11 +130,25 @@ public class Boss : MonoBehaviour {
         while (true)
         {
             stat = 2;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.8f);
             anim.SetInteger("stat", 2);
-            yield return new WaitForSeconds(1.0f);
+            audioSource.PlayOneShot(BongSound);
+            yield return new WaitForSeconds(0.8f);
             anim.SetInteger("stat", 0);
-            for (int i = 0; i < 15; i++)
+            int papernum = 14;
+            if (hp < maxhp * 1 / 4)
+            {
+                papernum = 20;
+            }
+            else if (hp < maxhp * 1 / 2)
+            {
+                papernum = 18;
+            }
+            else if (hp < maxhp * 3 / 4)
+            {
+                papernum = 16;
+            }
+            for (int i = 0; i < papernum; i++)
             {
                 Vector3 pos = new Vector3(0, -70, 5);
                 pos.x = Random.Range(82, 98);
@@ -149,6 +162,7 @@ public class Boss : MonoBehaviour {
                 GameObject tmp = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 0));
                 tmp.GetComponent<Paper>().atk = 10;
             }
+            audioSource.PlayOneShot(PaperSound);
             yield return new WaitForSeconds(3.0f);
             StartCoroutine(Move(0));
             yield break;
@@ -159,6 +173,22 @@ public class Boss : MonoBehaviour {
         while (true)
         {
             stat = 3;
+            yield return new WaitForSeconds(0.8f);
+            anim.SetInteger("stat", 2);
+            audioSource.PlayOneShot(BongSound);
+            yield return new WaitForSeconds(0.8f);
+            anim.SetInteger("stat", 3);
+            audioSource.PlayOneShot(BongSound);
+            yield return new WaitForSeconds(0.8f);
+            anim.SetInteger("stat", 0);
+            yield return new WaitForSeconds(0.8f);
+            if (hp < maxhp * 1 / 4)
+            {
+                bullet = Resources.Load("BeamPro") as GameObject;
+                Instantiate(bullet, new Vector3(90 + 4 * transform.localScale.x, -66.5f, 0), Quaternion.Euler(0, 0, 0));
+            }
+            bullet = Resources.Load("BeamPro") as GameObject;
+            Instantiate(bullet, new Vector3(90 - 4 * transform.localScale.x, -66.5f, 0), Quaternion.Euler(0, 0, 0));
             yield return new WaitForSeconds(3.0f);
             StartCoroutine(Move(0));
             yield break;
@@ -168,8 +198,30 @@ public class Boss : MonoBehaviour {
     {
         while (true)
         {
-            stat = 2;
-            yield return new WaitForSeconds(3.0f);
+            stat = 4;
+            anim.SetInteger("stat", 5);
+            int beamnum = 3;
+            if (hp < maxhp * 1 / 4)
+            {
+                beamnum = 12;
+            }
+            else if (hp < maxhp * 1 / 2)
+            {
+                beamnum = 8;
+            }
+            else if (hp < maxhp * 3 / 4)
+            {
+                beamnum = 5;
+            }
+            bullet = Resources.Load("TMBeam") as GameObject;
+            for (int i = 0; i < beamnum; i++)
+            {
+                rand = Random.Range(0, 360);
+                GameObject tmp = Instantiate(bullet, new Vector3(90, -75.75f, 5), Quaternion.Euler(0, 0, rand));
+            }
+            yield return new WaitForSeconds(8.0f);
+            anim.SetInteger("stat", 0);
+            yield return new WaitForSeconds(1.0f);
             StartCoroutine(Move(0));
             yield break;
         }
@@ -181,6 +233,7 @@ public class Boss : MonoBehaviour {
         {
             stat = -1;
             anim.SetInteger("stat", -1);
+            audioSource.PlayOneShot(MoveSound);
             yield return new WaitForSeconds(1.2f);
             stat = -2;
             invin = true;
@@ -217,7 +270,7 @@ public class Boss : MonoBehaviour {
             }
             else if (t == 1)
             {
-                //solar beam
+                transform.position = new Vector3(90, -76.75f, 6);
             }
             else if (t == 2)
             {
@@ -226,14 +279,23 @@ public class Boss : MonoBehaviour {
             anim.SetInteger("stat", -2);
             SR.enabled = true;
             COL.enabled = true;
+            audioSource.PlayOneShot(MoveSound);
             yield return new WaitForSeconds(1.2f);
             stat = -1;
             invin = false;
             yield return new WaitForSeconds(1.2f);
-            anim.SetInteger("stat", 0);
-            yield return new WaitForSeconds(1.0f);
-            stat = 0;
-
+            if (t == 1)
+            {
+                anim.SetInteger("stat", 4);
+                yield return new WaitForSeconds(1.0f);
+                StartCoroutine(Attack4());
+            }
+            else
+            {
+                anim.SetInteger("stat", 0);
+                yield return new WaitForSeconds(1.0f);
+                stat = 0;
+            }
             yield break;
         }
     }

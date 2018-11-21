@@ -12,6 +12,7 @@ public class Paper : MonoBehaviour
 
     void Start()
     {
+        atk = 10;
         dir = new Vector3(0, -0.005f, 0);
         speed = 3.0f;
     }
@@ -37,6 +38,10 @@ public class Paper : MonoBehaviour
     }
 
     void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
+    public void Dest()
     {
         Destroy(this.gameObject);
     }
