@@ -78,7 +78,7 @@ public class EnemyBattle2 : MonoBehaviour
 
         if (hp <= 0)
         {
-            GameObject.Find("Event").GetComponent<Event>().kill += 1;
+            GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
             Destroy(this.gameObject.transform.parent.gameObject);
         }
     }

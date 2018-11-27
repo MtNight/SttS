@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {   //Player's overall moving
 
-    public bool l;
-    public bool r;
+    public bool pl;
+    public bool pr;
     public bool jumping;
     public bool mp;
     public int land;
@@ -19,8 +19,8 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
     private Animator anim;
 
     void Start () {
-        l = true;   //왼쪽 이동 가능
-        r = true;   //오른쪽 이동 가능
+        pl = true;   //왼쪽 이동 가능
+        pr = true;   //오른쪽 이동 가능
         jumping = true;   //점프 가능
         mp = false;   //움직이는 발판
         land = 0;   //밟고 있는 땅 수
@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
         //move
         moveArrow = Vector3.zero;
         Vector3 i = transform.localScale;
-        if (Input.GetKey(KeyCode.LeftArrow) && l == true)
+        if (Input.GetKey(KeyCode.LeftArrow) && pl == true)
         {
             moveArrow = Vector3.left;
             dir = Vector3.left;
@@ -51,7 +51,7 @@ public class PlayerMove : MonoBehaviour {   //Player's overall moving
                 transform.localScale = i;
             }
         }
-        if (Input.GetKey(KeyCode.RightArrow) && r == true)
+        if (Input.GetKey(KeyCode.RightArrow) && pr == true)
         {
             moveArrow = Vector3.right;
             dir = Vector3.right;

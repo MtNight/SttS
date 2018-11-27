@@ -27,7 +27,7 @@ public class Stair : MonoBehaviour {
                 if (player.transform.position.x > 15.2f && player.transform.position.y > -74)
                 {
                     evn = GameObject.Find("Event");
-                    if (evn.GetComponent<Event>().kill >= 2)
+                    if (evn.GetComponent<Event>().killcnt >= 13)
                     {
                         Vector3 i = transform.position;
                         i.y -= 20;

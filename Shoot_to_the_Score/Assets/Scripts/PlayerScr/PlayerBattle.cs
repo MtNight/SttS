@@ -6,7 +6,6 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
 
     private bool load;
     private bool cool;
-    private bool attackcool;
     public int hp;
     public int atk;
     public int maxMagazine;
@@ -23,7 +22,6 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     void Start () {
         load = false;
         cool = false;
-        attackcool = false;
         hp = 500;
         maxMagazine = 30;
         mag = 30;
@@ -110,25 +108,25 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     {
         if (other.tag == "SAttack")
         {
-            if (other.transform.parent.gameObject.name == "BeamPro(Clone)")
+            if (other.gameObject.name == "TMBeam(Clone)")
+            {
+                if (other.gameObject.GetComponent<TMBscr>().attackcool == false)
+                {
+                    if (other.gameObject.GetComponent<TMBscr>().attack == 1)
+                    {
+                        StartCoroutine(other.gameObject.GetComponent<TMBscr>().DemegeCool());
+                        hp -= 5;
+                        audioSource.PlayOneShot(HitSound);
+                    }
+                }
+            }
+            else if (other.transform.parent.gameObject.name == "BeamPro(Clone)")
             {
                 if (other.transform.parent.GetComponent<BeamPro>().attackcool == false)
                 {
                     if (other.transform.parent.GetComponent<BeamPro>().attack == 2)
                     {
                         StartCoroutine(other.transform.parent.GetComponent<BeamPro>().DemegeCool());
-                        hp -= 2;
-                        audioSource.PlayOneShot(HitSound);
-                    }
-                }
-            }
-            else if (other.name == "TMBeam(Clone)")
-            {
-                if (other.GetComponent<TMBscr>().attackcool == false)
-                {
-                    if (other.GetComponent<TMBscr>().attack == 1)
-                    {
-                        StartCoroutine(other.GetComponent<TMBscr>().DemegeCool());
                         hp -= 2;
                         audioSource.PlayOneShot(HitSound);
                     }
@@ -142,7 +140,7 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
         while (true)
         {
             cool = true;
-            yield return new WaitForSeconds(0.1f * t);
+            yield return new WaitForSeconds(0.05f * t);
             cool = false;
             yield break;
         }
@@ -152,7 +150,6 @@ public class PlayerBattle : MonoBehaviour {   //Shoot and BeAttack code
     {
         while (true)
         {
-
             audioSource.PlayOneShot(LoadSound);
             load = true;
             yield return new WaitForSeconds(1.0f * t);

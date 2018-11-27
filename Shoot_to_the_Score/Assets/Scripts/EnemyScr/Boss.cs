@@ -29,12 +29,13 @@ public class Boss : MonoBehaviour {
     public AudioClip MoveSound;
 
     void Start () {
-        maxhp = 10000;
-        hp = 10000;
+        maxhp = 15000;
+        hp = 15000;
         stat = -3;
         invin = true;
         start = false;
         shoot = false;
+        patt = Random.Range(0, 4);
 
         player = GameObject.Find("Player");
         SR = GetComponent<SpriteRenderer>();
@@ -53,6 +54,7 @@ public class Boss : MonoBehaviour {
             if (start == false)
             {
                 start = true;
+                GameObject.Find("UImanager").GetComponent<UImanage>().boss = true;
             }
             StartCoroutine(Attack1());
             stat = 1;
@@ -62,12 +64,14 @@ public class Boss : MonoBehaviour {
         {
             if (shoot == false)
             {
-                patt = Random.Range(0, 3);
                 switch (patt)
                 {
-                    case 0: StartCoroutine(Attack2()); break;   //각 코루틴에서 stat변경.
-                    case 1: StartCoroutine(Attack3()); break;
-                    case 2: StartCoroutine(Move(1)); break;
+                    case 0: 
+                    case 1: StartCoroutine(Attack2(0)); break;  //각 코루틴에서 stat변경.
+                    case 2: 
+                    case 3: StartCoroutine(Attack3(0)); break;
+                    case 4: 
+                    case 5: StartCoroutine(Move(1)); break;
                 }
             }
         }
@@ -87,7 +91,8 @@ public class Boss : MonoBehaviour {
 
         if (hp <= 0)
         {
-            GameObject.Find("Event").GetComponent<Event>().kill += 1;
+            GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
+
             Destroy(this.gameObject);
         }
     }
@@ -125,7 +130,7 @@ public class Boss : MonoBehaviour {
             yield break;
         }
     }
-    IEnumerator Attack2()   //종이
+    IEnumerator Attack2(int t)   //종이
     {
         while (true)
         {
@@ -163,12 +168,29 @@ public class Boss : MonoBehaviour {
                 tmp.GetComponent<Paper>().atk = 10;
             }
             audioSource.PlayOneShot(PaperSound);
+            if (t == 1)
+            {
+                stat = 4;
+                yield break;
+            }
             yield return new WaitForSeconds(3.0f);
-            StartCoroutine(Move(0));
+            if (t == 0)
+            {
+                if (hp < maxhp / 2)
+                {
+                    patt = Random.Range(0, 6);
+                }
+                else
+                {
+                    patt = Random.Range(0, 5);
+                }
+                if (patt == 1) { patt = 2; }
+                StartCoroutine(Move(0));
+            }
             yield break;
         }
     }
-    IEnumerator Attack3()   //빔 프로젝터
+    IEnumerator Attack3(int t)   //빔 프로젝터
     {
         while (true)
         {
@@ -189,8 +211,25 @@ public class Boss : MonoBehaviour {
             }
             bullet = Resources.Load("BeamPro") as GameObject;
             Instantiate(bullet, new Vector3(90 - 4 * transform.localScale.x, -66.5f, 0), Quaternion.Euler(0, 0, 0));
+            if (t == 1)
+            {
+                stat = 4;
+                yield break;
+            }
             yield return new WaitForSeconds(3.0f);
-            StartCoroutine(Move(0));
+            if (t == 0)
+            {
+                if (hp < maxhp / 2)
+                {
+                    patt = Random.Range(0, 6);
+                }
+                else
+                {
+                    patt = Random.Range(0, 5);
+                }
+                if (patt == 2) { patt = 1; }
+                StartCoroutine(Move(0));
+            }
             yield break;
         }
     }
@@ -198,28 +237,56 @@ public class Boss : MonoBehaviour {
     {
         while (true)
         {
+            patt = Random.Range(0, 5);
             stat = 4;
+            int beamnum = 5;
+            if (hp < maxhp / 2)
+            {
+                rand = Random.Range(0, 3);
+                if (rand == 0)
+                {
+                    beamnum += 2;
+                }
+                else if (rand == 1)
+                {
+                    StartCoroutine(Attack2(1));
+                    yield return new WaitForSeconds(2.0f);
+                }
+                else
+                {
+                    StartCoroutine(Attack3(1));
+                    yield return new WaitForSeconds(3.5f);
+                }
+            }
+            anim.SetInteger("stat", 4);
+            yield return new WaitForSeconds(1.0f);
             anim.SetInteger("stat", 5);
-            int beamnum = 3;
             if (hp < maxhp * 1 / 4)
             {
-                beamnum = 12;
+                beamnum += 2;
             }
             else if (hp < maxhp * 1 / 2)
             {
-                beamnum = 8;
+                beamnum += 2;
             }
             else if (hp < maxhp * 3 / 4)
             {
-                beamnum = 5;
+                beamnum += 2;
             }
             bullet = Resources.Load("TMBeam") as GameObject;
             for (int i = 0; i < beamnum; i++)
             {
-                rand = Random.Range(0, 360);
-                GameObject tmp = Instantiate(bullet, new Vector3(90, -75.75f, 5), Quaternion.Euler(0, 0, rand));
+                if (i == 0)
+                {
+                    rand = Random.Range(200, 340);
+                }
+                else
+                {
+                    rand = Random.Range(0, 360);
+                }
+                Instantiate(bullet, new Vector3(90, -75.75f, 4), Quaternion.Euler(0, 0, rand));
             }
-            yield return new WaitForSeconds(8.0f);
+            yield return new WaitForSeconds(5.0f);
             anim.SetInteger("stat", 0);
             yield return new WaitForSeconds(1.0f);
             StartCoroutine(Move(0));
@@ -286,8 +353,6 @@ public class Boss : MonoBehaviour {
             yield return new WaitForSeconds(1.2f);
             if (t == 1)
             {
-                anim.SetInteger("stat", 4);
-                yield return new WaitForSeconds(1.0f);
                 StartCoroutine(Attack4());
             }
             else

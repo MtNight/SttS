@@ -46,12 +46,13 @@ public class Teleport : MonoBehaviour {
             tnum = 6;
             active = true;
         }
+        else if (transform.position.x == 1 && transform.position.y == -44.5f)
+        {
+            tnum = 7;
+            active = true;
+        }
         evn = GameObject.Find("Event");
     }
-	
-	void Update () {
-		
-	}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -63,13 +64,14 @@ public class Teleport : MonoBehaviour {
                 {
                     switch (tnum)
                     {
-                        case 0: other.transform.parent.gameObject.transform.position = new Vector3(1, -112, 5); use = true; break;//1, -112, 5
-                        case 1: if (evn.GetComponent<Event>().kill >= 2) { other.transform.parent.gameObject.transform.position = new Vector3(98, -112, 5); use = true; } break;
-                        case 2: other.transform.parent.gameObject.transform.position = new Vector3(6, -78.9f, 5); use = true; break;
-                        case 3: if (evn.GetComponent<Event>().kill >= 1) { other.transform.parent.gameObject.transform.position = new Vector3(36, -101f, 5); use = true; } break;
-                        case 4: other.transform.parent.gameObject.transform.position = new Vector3(23, -90.5f, 5); use = true; break;
-                        case 5: if (evn.GetComponent<Event>().kill >= 6) { other.transform.parent.gameObject.transform.position = new Vector3(50, -80.3f, 5); use = true; } break;
-                        case 6: if (evn.GetComponent<Event>().kill >= 6) { other.transform.parent.gameObject.transform.position = new Vector3(98, -112f, 5); use = true; } break;
+                        case 0: other.transform.parent.gameObject.transform.position = new Vector3(1, -112, 5); use = true; break;//test
+                        case 1: if (evn.GetComponent<Event>().kill >= 2 || evn.GetComponent<Event>().killcnt >= 2) { other.transform.parent.gameObject.transform.position = new Vector3(1, -112, 5); use = true; } break;   //0-2
+                        case 2: other.transform.parent.gameObject.transform.position = new Vector3(6, -78.9f, 5); use = true; break;   //1-2
+                        case 3: if (evn.GetComponent<Event>().kill >= 1 || evn.GetComponent<Event>().killcnt >= 14) { other.transform.parent.gameObject.transform.position = new Vector3(36, -101f, 5); use = true; } break;   //f-2
+                        case 4: other.transform.parent.gameObject.transform.position = new Vector3(23, -90.5f, 5); use = true; break;   //1-6
+                        case 5: if (evn.GetComponent<Event>().kill >= 6 || evn.GetComponent<Event>().killcnt >= 47) { other.transform.parent.gameObject.transform.position = new Vector3(50, -80.3f, 5); use = true; } break;   //1-11
+                        case 6: if (evn.GetComponent<Event>().kill >= 6 || evn.GetComponent<Event>().killcnt >= 53) { other.transform.parent.gameObject.transform.position = new Vector3(98, -112f, 5); use = true; } break;   //1-f
+                        case 7: other.transform.parent.gameObject.transform.position = new Vector3(98, -112f, 5); use = true; break;   //tset
                     }
                 }
             }

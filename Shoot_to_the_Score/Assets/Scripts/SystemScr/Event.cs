@@ -11,21 +11,26 @@ public class Event : MonoBehaviour {
     private int pre;
     public int cur;
     public int kill;
+    public int killcnt;
     public int add;
+    private int create;
 
     void Start () {
         EO= Resources.Load("EnemyO") as GameObject;
         EI = Resources.Load("EnemyI") as GameObject;
         cam = GameObject.Find("Game Camera");
-        arr = new bool[14];
+        arr = new bool[20];
         for (int i = 0; i < 14; i++)
         {
             arr[i] = false;
         }
         cur = 0;
         kill = 0;
+        killcnt = 0;
         add = 0;
-	}
+        create = 0;
+
+    }
 	
 	void Update ()
     {
@@ -44,13 +49,14 @@ public class Event : MonoBehaviour {
         else if (cam.transform.position.x == 10 && cam.transform.position.y == -87.5f) { cur = 11; }
         else if (cam.transform.position.x == 50 && cam.transform.position.y == -87.5f) { cur = 12; }
         else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 13; }
-        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 14; }
-        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 15; }
-        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 16; }
-        else if (cam.transform.position.x == 50 && cam.transform.position.y == -76.25f) { cur = 17; }
+        else if (cam.transform.position.x == 90 && cam.transform.position.y == -110) { cur = 14; }
+        else if (cam.transform.position.x == 90 && cam.transform.position.y == -98.75f) { cur = 15; }
+        else if (cam.transform.position.x == 90 && cam.transform.position.y == -87.5f) { cur = 16; }
+        else if (cam.transform.position.x == 90 && cam.transform.position.y == -76.25f) { cur = 17; }
 
         if (pre != cur)
         {
+            killcnt += kill;
             kill = 0;
         }
 
@@ -58,20 +64,25 @@ public class Event : MonoBehaviour {
         {
             switch (cur)
             {
-                case 0: {
-                        if (kill >= 0) { arr[cur] = true; }
-                        break; }
-                case 1: {
-                        if (kill >= 2) { arr[cur] = true; }
-                        break; }
+                case 0:
+                    {
+                        if (kill >= 0) { arr[cur] = true; }   //0
+                        break;
+                    }
+                case 1:
+                    {
+                        if (killcnt >= 2) { arr[cur] = true; }   //2
+                        break;
+                    }
                 case 2:
                     {
                         if (add == 0)
                         {
                             StartCoroutine(CreateEnemy(1.0f, EO, Vector3.right));
                         }
-                        if (kill >= 2) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 4) { arr[cur] = true; }   //4
+                        break;
+                    }
                 case 3:
                     {
                         if (add == 1)
@@ -79,8 +90,9 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(1.0f, EO, Vector3.right));
                             //StartCoroutine(CreateEnemy(1.0f, EO, Vector3.left));
                         }
-                        if (kill >= 3) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 7) { arr[cur] = true; }   //7
+                        break;
+                    }
                 case 4:
                     {
                         if (add == 2)
@@ -88,15 +100,19 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(4.0f, EO, Vector3.left));
                             StartCoroutine(CreateEnemy(5.0f, EO, Vector3.left));
                         }
-                        if (kill >= 4) { arr[cur] = true; }
-                        break; }
-                case 5: {
-                        if (kill >= 2) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 11) { arr[cur] = true; }   //11
+                        break;
+                    }
+                case 5:
+                    {
+                        if (killcnt >= 13) { arr[cur] = true; }   //13
+                        break;
+                    }
                 case 6:
                     {
-                        if (kill >= 1) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 14) { arr[cur] = true; }   //14
+                        break;
+                    }
                 case 7:
                     {
                         if (add == 4)
@@ -106,8 +122,9 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
                             //StartCoroutine(CreateEnemy(5.0f, EI, Vector3.left));
                         }
-                        if (kill >= 3) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 17) { arr[cur] = true; }   //17
+                        break;
+                    }
                 case 8:
                     {
                         if (add == 7)
@@ -116,8 +133,9 @@ public class Event : MonoBehaviour {
                             //StartCoroutine(CreateEnemy(5.0f, EI, Vector3.right));
                             StartCoroutine(CreateEnemy(6.0f, EI, Vector3.right));
                         }
-                        if (kill >= 4) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 21) { arr[cur] = true; }   //21
+                        break;
+                    }
                 case 9:
                     {
                         if (add == 9)
@@ -125,8 +143,9 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(7.0f, EI, Vector3.left));
                             StartCoroutine(CreateEnemy(8.0f, EI, Vector3.left));
                         }
-                        if (kill >= 7) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 28) { arr[cur] = true; }   //28
+                        break;
+                    }
                 case 10:
                     {
                         if (add == 11)
@@ -136,8 +155,9 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
                             StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
                         }
-                        if (kill >= 6) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 34) { arr[cur] = true; }   //34
+                        break;
+                    }
                 case 11:
                     {
                         if (add == 15)
@@ -146,8 +166,9 @@ public class Event : MonoBehaviour {
                             //StartCoroutine(CreateEnemy(4.5f, EO, Vector3.right));
                             StartCoroutine(CreateEnemy(5.0f, EO, Vector3.right));
                         }
-                        if (kill >= 7) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 41) { arr[cur] = true; }   //41
+                        break;
+                    }
                 case 12:
                     {
                         if (add == 17)
@@ -158,15 +179,18 @@ public class Event : MonoBehaviour {
                             //StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
                             StartCoroutine(CreateEnemy(9.0f, EO, Vector3.left));
                         }
-                        if (kill >= 6) { arr[cur] = true; }
-                        break; }
-                case 13: {
-                        if (kill >= 6) { arr[cur] = true; }
-                        break; }
+                        if (killcnt >= 47) { arr[cur] = true; }   //47
+                        break;
+                    }
+                case 13:
+                    {
+                        if (killcnt >= 53) { arr[cur] = true; }   //53
+                        break;
+                    }
             }
             transform.position = cam.transform.position;
         }
-        else
+        else if (create == 0)
         {
             transform.position = new Vector3(0, 0, 0);
         }
@@ -178,6 +202,7 @@ public class Event : MonoBehaviour {
     {
         while (true)
         {
+            create += 1;
             int tmp = add;
             if (add != -1)
             {
@@ -197,6 +222,7 @@ public class Event : MonoBehaviour {
             {
                 add += 1;
             }
+            create -= 1;
             yield break;
         }
     }

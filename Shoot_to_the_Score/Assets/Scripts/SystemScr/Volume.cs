@@ -18,7 +18,7 @@ public class Volume : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        vol = GameObject.Find("Scenemove").GetComponent<AudioSource>().volume;
+        vol = GameObject.Find("UImanager").GetComponent<AudioSource>().volume;
         me.value = vol;
 	}
 
@@ -26,6 +26,6 @@ public class Volume : MonoBehaviour {
 
     {
         me.value = ch;
-        GameObject.Find("Scenemove").GetComponent<AudioSource>().volume = me.value;
+        GameObject.Find("UImanager").GetComponent<AudioSource>().volume = me.value;
     }
 }

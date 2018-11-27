@@ -9,9 +9,9 @@ public class Item_Cof : MonoBehaviour
     {
         if (other.tag == "Range")
         {
-            if (other.transform.parent.tag == "Player")
+            if (other.transform.parent.tag == "Player" && other.gameObject.GetComponent<PlayerBattle>()!=null)
             {
-                other.GetComponent<PlayerBattle>().hp += 150;
+                other.gameObject.GetComponent<PlayerBattle>().hp += 200;
                 Destroy(this.gameObject);
             }
         }

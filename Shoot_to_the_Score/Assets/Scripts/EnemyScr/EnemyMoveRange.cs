@@ -37,8 +37,8 @@ public class EnemyMoveRange : MonoBehaviour {
                 {
                     if (block == 1)
                     {
-                        enemy.GetComponent<EnemyMove>().r = true;
-                        enemy.GetComponent<EnemyMove>().l = true;
+                        enemy.GetComponent<EnemyMove>().er = true;
+                        enemy.GetComponent<EnemyMove>().el = true;
                     }
                 }
                 else {
@@ -48,13 +48,13 @@ public class EnemyMoveRange : MonoBehaviour {
                     }
                     else
                     {
-                        if (transform.position.x >= other.transform.position.x && enemy.GetComponent<EnemyMove>().r != false)
+                        if (transform.position.x >= other.transform.position.x && enemy.GetComponent<EnemyMove>().er != false)
                         {
-                            enemy.GetComponent<EnemyMove>().l = false;
+                            enemy.GetComponent<EnemyMove>().el = false;
                         }
-                        else if (transform.position.x <= other.transform.position.x && enemy.GetComponent<EnemyMove>().l != false)
+                        else if (transform.position.x <= other.transform.position.x && enemy.GetComponent<EnemyMove>().el != false)
                         {
-                            enemy.GetComponent<EnemyMove>().r = false;
+                            enemy.GetComponent<EnemyMove>().er = false;
                         }
 
                         //if (enemy.GetComponent<EnemyMove>().jumping == true)
@@ -113,13 +113,13 @@ public class EnemyMoveRange : MonoBehaviour {
                 block -= 1;
                 if (block == 0)
                 {
-                    if (enemy.GetComponent<EnemyMove>().r == false)
+                    if (enemy.GetComponent<EnemyMove>().er == false)
                     {
-                        enemy.GetComponent<EnemyMove>().r = true;
+                        enemy.GetComponent<EnemyMove>().er = true;
                     }
-                    else if (enemy.GetComponent<EnemyMove>().l == false)
+                    else if (enemy.GetComponent<EnemyMove>().el == false)
                     {
-                        enemy.GetComponent<EnemyMove>().l = true;
+                        enemy.GetComponent<EnemyMove>().el = true;
                     }
                 }
             }

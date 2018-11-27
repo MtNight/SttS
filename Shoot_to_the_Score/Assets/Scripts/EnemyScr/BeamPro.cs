@@ -21,7 +21,7 @@ public class BeamPro : MonoBehaviour {
         atk = 1;
         attack = 0;
         attackcool = false;
-        hp = 50;
+        hp = 100;
         posy = Random.Range(0.0f, 1.0f) - 74.5f;
 
         Ranim = transform.GetChild(0).GetComponent<Animator>();
@@ -63,7 +63,7 @@ public class BeamPro : MonoBehaviour {
 
         if (hp <= 0)
         {
-            GameObject.Find("Event").GetComponent<Event>().kill += 1;
+            GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
             Destroy(this.gameObject);
         }
     }
@@ -93,7 +93,7 @@ public class BeamPro : MonoBehaviour {
         while (true)
         {
             attackcool = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             attackcool = false;
             yield break;
         }

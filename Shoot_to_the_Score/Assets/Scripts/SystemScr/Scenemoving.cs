@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Scenemoving : MonoBehaviour {
 
-	void Start () {
+    void Start () {
         StartCoroutine("LtoM");
 	}
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour {
 
-    public bool l;
-    public bool r;
+    public bool el;
+    public bool er;
     public bool jumping;
     public bool jumpable;
     public bool attackcool;
@@ -25,8 +25,8 @@ public class EnemyMove : MonoBehaviour {
 
     void Start()
     {
-        l = true;   //왼쪽 이동 가능
-        r = true;   //오른쪽 이동 가능
+        el = true;   //왼쪽 이동 가능
+        er = true;   //오른쪽 이동 가능
         jumping = true;   //점프 중임
         jumpable = false;
         attackcool = true;
@@ -48,12 +48,12 @@ public class EnemyMove : MonoBehaviour {
     void Update()
     {
         player = GameObject.Find("Player");
-        cam = GameObject.Find("Game Camera");
-        x1 = player.transform.position.x;
-        x2 = cam.transform.position.x;
 
         if (player != null)
         {
+            cam = GameObject.Find("Game Camera");
+            x1 = player.transform.position.x;
+            x2 = cam.transform.position.x;
         }
         if (move == -2)
         {
@@ -71,7 +71,7 @@ public class EnemyMove : MonoBehaviour {
             jumpable = false;
             moveArrow = Vector3.zero;
             Vector3 i = transform.localScale;
-            if (player.transform.position.x >= transform.position.x && r == true)
+            if (x1 >= transform.position.x && er == true)
             {
                 moveArrow = Vector3.right;
                 dir = Vector3.right;
@@ -81,7 +81,7 @@ public class EnemyMove : MonoBehaviour {
                     transform.localScale = i;
                 }
             }
-            else if (player.transform.position.x < transform.position.x && l == true)
+            else if (x1 < transform.position.x && el == true)
             {
                 moveArrow = Vector3.left;
                 dir = Vector3.left;
@@ -110,7 +110,7 @@ public class EnemyMove : MonoBehaviour {
             {
                 if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
                 {
-                    if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
+                    if (Mathf.Abs(x1 - transform.position.x) < 8)
                     {
                         rand = 7;
                     }
@@ -122,7 +122,7 @@ public class EnemyMove : MonoBehaviour {
                     {
                         StartCoroutine("Back");
                         move = 2;
-                        if (player.transform.position.x > transform.position.x && l == true)
+                        if (x1 > transform.position.x && el == true)
                         {
                             moveArrow = Vector3.left;
                             dir = Vector3.left;
@@ -132,7 +132,7 @@ public class EnemyMove : MonoBehaviour {
                                 transform.localScale = i;
                             }
                         }
-                        else if (player.transform.position.x < transform.position.x && r == true)
+                        else if (x1 < transform.position.x && er == true)
                         {
                             moveArrow = Vector3.right;
                             dir = Vector3.right;
@@ -147,7 +147,7 @@ public class EnemyMove : MonoBehaviour {
                     {
                         StartCoroutine("Close");
                         move = 1;
-                        if (player.transform.position.x > transform.position.x && r == true)
+                        if (x1 > transform.position.x && er == true)
                         {
                             moveArrow = Vector3.right;
                             dir = Vector3.right;
@@ -157,7 +157,7 @@ public class EnemyMove : MonoBehaviour {
                                 transform.localScale = i;
                             }
                         }
-                        else if (player.transform.position.x < transform.position.x && l == true)
+                        else if (x1 < transform.position.x && el == true)
                         {
                             moveArrow = Vector3.left;
                             dir = Vector3.left;
@@ -175,14 +175,14 @@ public class EnemyMove : MonoBehaviour {
         {
             anim.SetBool("run", true);
             jumpable = true;
-            if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+            if ((er == true && moveArrow.x == 1) || (el == true && moveArrow.x == -1))
             {
                 if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
                 {
                     transform.position += Speed * moveArrow * Time.deltaTime;
                 }
             }
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
+            if (Mathf.Abs(x1 - transform.position.x) < 8)
             {
                 if (attackcool == false)
                 {
@@ -198,16 +198,16 @@ public class EnemyMove : MonoBehaviour {
             {
                 if (Mathf.Abs(cam.transform.position.x - transform.position.x) < 10 && Mathf.Abs(cam.transform.position.y - transform.position.y) < 5.625f)
                 {
-                    if (Mathf.Abs(player.transform.position.x - transform.position.x) < 8)
+                    if (Mathf.Abs(x1 - transform.position.x) < 8)
                     {
-                        if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+                        if ((er == true && moveArrow.x == 1) || (el == true && moveArrow.x == -1))
                         {
                             transform.position += Speed * moveArrow * Time.deltaTime;
                         }
                     }
                     else
                     {
-                        if ((r == true && moveArrow.x == 1) || (l == true && moveArrow.x == -1))
+                        if ((er == true && moveArrow.x == 1) || (el == true && moveArrow.x == -1))
                         {
                             transform.position += Speed * moveArrow * Time.deltaTime * 0.75f;
                         }
@@ -220,7 +220,7 @@ public class EnemyMove : MonoBehaviour {
             }
             else
             {
-                if (cam.transform.position.x < transform.position.x && l == true)
+                if (cam.transform.position.x < transform.position.x && el == true)
                 {
                     moveArrow = Vector3.left;
                     dir = Vector3.left;
@@ -231,7 +231,7 @@ public class EnemyMove : MonoBehaviour {
                         transform.localScale = i;
                     }
                 }
-                else if (cam.transform.position.x > transform.position.x && r == true)
+                else if (cam.transform.position.x > transform.position.x && er == true)
                 {
                     moveArrow = Vector3.right;
                     dir = Vector3.right;
@@ -334,7 +334,7 @@ public class EnemyMove : MonoBehaviour {
         while (true)
         {
             Vector3 i = transform.localScale;
-            if (player.transform.position.x > transform.position.x)
+            if (x1 > transform.position.x)
             {
                 dir = Vector3.right;
                 if (i.x != -Mathf.Abs(i.x))
