@@ -143,10 +143,7 @@ public class UImanage : MonoBehaviour {
                     game2.text = k.GetComponent<PlayerBattle>().mag + "/" + k.GetComponent<PlayerBattle>().maxMagazine;
                     hp.value = k.GetComponent<PlayerBattle>().hp;
                 }
-                if (GameObject.Find("BOSS").GetComponent<Boss>() != null)
-                {
-                    bhp.value = j.GetComponent<Boss>().hp;
-                }
+                bhp.value = j.GetComponent<Boss>().hp;
 
                 load.gameObject.SetActive(false);
                 BG.gameObject.SetActive(false);
@@ -169,6 +166,10 @@ public class UImanage : MonoBehaviour {
                         audioSource.Play();
                         music = 3;
                     }
+                }
+                if (music == 3 && GameObject.Find("BOSS") == null)
+                {
+                    audioSource.Stop();
                 }
                 else
                 {

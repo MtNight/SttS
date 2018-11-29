@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/eskwo/Documents/Stts/SttS/Game/최종 SttS/최종 SttS.exe
+C:/Users/eskwo/Documents/Stts/SttS/Game/넥슨발표용 SttS/넥슨발표용 SttS.exe
 SceneListBegin?
 Assets/Scenes/LoadingScene.unity
 Assets/Scenes/MainMenu.unity

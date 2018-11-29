@@ -245,7 +245,7 @@ public class Boss : MonoBehaviour {
                 rand = Random.Range(0, 3);
                 if (rand == 0)
                 {
-                    beamnum += 2;
+                    beamnum += 3;
                 }
                 else if (rand == 1)
                 {
@@ -263,20 +263,20 @@ public class Boss : MonoBehaviour {
             anim.SetInteger("stat", 5);
             if (hp < maxhp * 1 / 4)
             {
-                beamnum += 2;
+                beamnum += 3;
             }
             else if (hp < maxhp * 1 / 2)
             {
-                beamnum += 2;
+                beamnum += 3;
             }
             else if (hp < maxhp * 3 / 4)
             {
-                beamnum += 2;
+                beamnum += 3;
             }
             bullet = Resources.Load("TMBeam") as GameObject;
             for (int i = 0; i < beamnum; i++)
             {
-                if (i == 0)
+                if (i % 2 == 0)
                 {
                     rand = Random.Range(200, 340);
                 }
