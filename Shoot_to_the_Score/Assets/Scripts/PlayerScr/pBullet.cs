@@ -10,7 +10,6 @@ public class pBullet : MonoBehaviour {   //Bullet flying code
     private Vector3 dir;
 
 	void Start () {
-        speed = 10.0f;
         dir = Vector3.right;
         if (GameObject.Find("Player") != null)
         {

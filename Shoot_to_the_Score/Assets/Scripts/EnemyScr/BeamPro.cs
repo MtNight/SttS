@@ -39,6 +39,10 @@ public class BeamPro : MonoBehaviour {
     }
 	
 	void Update () {
+        if (GameObject.Find("BOSS") == null)
+        {
+            Destroy(gameObject);
+        }
         if (transform.position.y > posy)
         {
             transform.position += new Vector3(0, -5, 0) * Time.deltaTime;

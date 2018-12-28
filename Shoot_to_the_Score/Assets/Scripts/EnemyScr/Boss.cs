@@ -29,8 +29,10 @@ public class Boss : MonoBehaviour {
     public AudioClip MoveSound;
 
     void Start () {
-        maxhp = 15000;
-        hp = 15000;
+        //maxhp = 15000;
+        //hp = 15000;
+        maxhp = 1000;
+        hp = 1000;
         stat = -3;
         invin = true;
         start = false;
@@ -92,8 +94,15 @@ public class Boss : MonoBehaviour {
         if (hp <= 0)
         {
             GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
-
             Destroy(this.gameObject);
+            player.transform.position = new Vector3(110,-42.5f,5); //이동시킬 위치 입력
+            GameObject.Find("UImanager").GetComponent<UImanage>().boss = false;
+            GameObject.Find("UImanager").GetComponent<UImanage>().StartCoroutine("Ending");
+            //anim = WrapMode.Once;
+            //GameObject.Find("UImanager").GetComponent<AudioSource>.BGM1.gameObject.SetActive(false);
+            //GameObject.Find("UImanager").GetComponent<UImanage>().hp = flase;
+
+            // transform.position = new Vector3(180, 1.38f, 175);
         }
     }
 
@@ -245,7 +254,7 @@ public class Boss : MonoBehaviour {
                 rand = Random.Range(0, 3);
                 if (rand == 0)
                 {
-                    beamnum += 3;
+                    beamnum += 2;
                 }
                 else if (rand == 1)
                 {
@@ -263,20 +272,20 @@ public class Boss : MonoBehaviour {
             anim.SetInteger("stat", 5);
             if (hp < maxhp * 1 / 4)
             {
-                beamnum += 3;
+                beamnum += 2;
             }
             else if (hp < maxhp * 1 / 2)
             {
-                beamnum += 3;
+                beamnum += 2;
             }
             else if (hp < maxhp * 3 / 4)
             {
-                beamnum += 3;
+                beamnum += 2;
             }
             bullet = Resources.Load("TMBeam") as GameObject;
             for (int i = 0; i < beamnum; i++)
             {
-                if (i % 2 == 0)
+                if (i == 0)
                 {
                     rand = Random.Range(200, 340);
                 }

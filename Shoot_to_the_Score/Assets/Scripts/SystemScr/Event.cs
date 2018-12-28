@@ -8,9 +8,7 @@ public class Event : MonoBehaviour {
     private GameObject EI;
     private GameObject cam;
     private bool[] arr;
-    private int pre;
     public int cur;
-    public int kill;
     public int killcnt;
     public int add;
     private int create;
@@ -25,7 +23,6 @@ public class Event : MonoBehaviour {
             arr[i] = false;
         }
         cur = 0;
-        kill = 0;
         killcnt = 0;
         add = 0;
         create = 0;
@@ -53,12 +50,7 @@ public class Event : MonoBehaviour {
         else if (cam.transform.position.x == 90 && cam.transform.position.y == -98.75f) { cur = 15; }
         else if (cam.transform.position.x == 90 && cam.transform.position.y == -87.5f) { cur = 16; }
         else if (cam.transform.position.x == 90 && cam.transform.position.y == -76.25f) { cur = 17; }
-
-        if (pre != cur)
-        {
-            killcnt += kill;
-            kill = 0;
-        }
+        else { cur = 18; }
 
         if (arr[cur] == false)
         {
@@ -66,7 +58,7 @@ public class Event : MonoBehaviour {
             {
                 case 0:
                     {
-                        if (kill >= 0) { arr[cur] = true; }   //0
+                        if (killcnt >= 0) { arr[cur] = true; }   //0
                         break;
                     }
                 case 1:
@@ -88,7 +80,6 @@ public class Event : MonoBehaviour {
                         if (add == 1)
                         {
                             StartCoroutine(CreateEnemy(1.0f, EO, Vector3.right));
-                            //StartCoroutine(CreateEnemy(1.0f, EO, Vector3.left));
                         }
                         if (killcnt >= 7) { arr[cur] = true; }   //7
                         break;
@@ -120,7 +111,6 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(1.0f, EI, Vector3.left));
                             StartCoroutine(CreateEnemy(2.0f, EI, Vector3.left));
                             StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
-                            //StartCoroutine(CreateEnemy(5.0f, EI, Vector3.left));
                         }
                         if (killcnt >= 17) { arr[cur] = true; }   //17
                         break;
@@ -130,7 +120,6 @@ public class Event : MonoBehaviour {
                         if (add == 7)
                         {
                             StartCoroutine(CreateEnemy(2.0f, EO, Vector3.right));
-                            //StartCoroutine(CreateEnemy(5.0f, EI, Vector3.right));
                             StartCoroutine(CreateEnemy(6.0f, EI, Vector3.right));
                         }
                         if (killcnt >= 21) { arr[cur] = true; }   //21
@@ -153,7 +142,7 @@ public class Event : MonoBehaviour {
                             StartCoroutine(CreateEnemy(2.0f, EO, Vector3.right));
                             StartCoroutine(CreateEnemy(3.0f, EO, Vector3.right));
                             StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
-                            StartCoroutine(CreateEnemy(4.0f, EI, Vector3.left));
+                            StartCoroutine(CreateEnemy(4.5f, EI, Vector3.left));
                         }
                         if (killcnt >= 34) { arr[cur] = true; }   //34
                         break;
@@ -163,7 +152,6 @@ public class Event : MonoBehaviour {
                         if (add == 15)
                         {
                             StartCoroutine(CreateEnemy(4.0f, EO, Vector3.right));
-                            //StartCoroutine(CreateEnemy(4.5f, EO, Vector3.right));
                             StartCoroutine(CreateEnemy(5.0f, EO, Vector3.right));
                         }
                         if (killcnt >= 41) { arr[cur] = true; }   //41
@@ -173,11 +161,9 @@ public class Event : MonoBehaviour {
                     {
                         if (add == 17)
                         {
-                            StartCoroutine(CreateEnemy(6.0f, EO, Vector3.left));
-                            //StartCoroutine(CreateEnemy(7.0f, EO, Vector3.left));
-                            StartCoroutine(CreateEnemy(8.0f, EO, Vector3.left));
-                            //StartCoroutine(CreateEnemy(8.5f, EO, Vector3.left));
-                            StartCoroutine(CreateEnemy(9.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(3.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(5.0f, EO, Vector3.left));
+                            StartCoroutine(CreateEnemy(7.0f, EO, Vector3.left));
                         }
                         if (killcnt >= 47) { arr[cur] = true; }   //47
                         break;
@@ -194,8 +180,6 @@ public class Event : MonoBehaviour {
         {
             transform.position = new Vector3(0, 0, 0);
         }
-
-        pre = cur;
     }
 
     IEnumerator CreateEnemy(float t, GameObject Enemy, Vector3 dir)

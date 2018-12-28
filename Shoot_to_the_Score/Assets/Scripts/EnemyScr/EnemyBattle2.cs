@@ -8,6 +8,7 @@ public class EnemyBattle2 : MonoBehaviour
     private bool summon;
     public bool fire;
     public bool cool;
+    private bool dead;
     public int hp;
     public int attack;
     public Vector3 dir;
@@ -24,6 +25,7 @@ public class EnemyBattle2 : MonoBehaviour
         summon = false;
         fire = false;
         cool = false;
+        dead = false;
         hp = 120;
         dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
         bullet = Resources.Load("PlayeBullet") as GameObject;
@@ -75,9 +77,10 @@ public class EnemyBattle2 : MonoBehaviour
             Destroy(other.gameObject);
             audioSource.PlayOneShot(HitSound);
         }
-
-        if (hp <= 0)
+        
+        if (hp <= 0 && dead == false)
         {
+            dead = true;
             GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
             Destroy(this.gameObject.transform.parent.gameObject);
         }
@@ -88,15 +91,11 @@ public class EnemyBattle2 : MonoBehaviour
         while (true)
         {
             //delay
+            yield return new WaitForSeconds(0.7f + Random.Range(0, 0.3f));
+            Shoot();
             yield return new WaitForSeconds(0.7f);
             Shoot();
-            yield return new WaitForSeconds(0.2f);
-            //del
-            yield return new WaitForSeconds(0.5f);
-            Shoot();
-            yield return new WaitForSeconds(0.2f);
-            //dle
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             cool = false;
             if (attack == 0)
             {

@@ -41,7 +41,7 @@ public class Scenemoving : MonoBehaviour {
             SceneManager.LoadScene("MainMenu");
             GameObject.Find("UImanager").GetComponent<UImanage>().scenenum = 1;
             GameObject.Find("pMoverange").gameObject.SetActive(true);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             yield break;
         }
     }

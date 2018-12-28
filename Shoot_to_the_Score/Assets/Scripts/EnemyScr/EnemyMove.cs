@@ -48,7 +48,6 @@ public class EnemyMove : MonoBehaviour {
     void Update()
     {
         player = GameObject.Find("Player");
-
         if (player != null)
         {
             cam = GameObject.Find("Game Camera");
@@ -366,7 +365,7 @@ public class EnemyMove : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.6f + Random.Range(0, 0.4f));
             attackcool = false;
             yield break;
         }
@@ -375,7 +374,7 @@ public class EnemyMove : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.4f + Random.Range(0, 0.6f));
             attackcool = false;
             yield break;
         }

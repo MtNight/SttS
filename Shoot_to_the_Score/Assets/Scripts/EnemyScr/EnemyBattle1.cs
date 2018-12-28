@@ -6,6 +6,7 @@ public class EnemyBattle1 : MonoBehaviour {
 
     public bool fire;
     public bool cool;
+    private bool dead;
     public int hp;
     public int attack;
     public Vector3 dir;
@@ -20,6 +21,7 @@ public class EnemyBattle1 : MonoBehaviour {
     {
         fire = false;
         cool = false;
+        dead = false;
         hp = 100;
         dir = transform.parent.gameObject.GetComponent<EnemyMove>().dir;
         bullet = Resources.Load("TalenteBullet") as GameObject;
@@ -65,8 +67,9 @@ public class EnemyBattle1 : MonoBehaviour {
             audioSource.PlayOneShot(HitSound);
         }
 
-        if (hp <= 0)
+        if (hp <= 0 && dead == false)
         {
+            dead = true;
             GameObject.Find("Event").GetComponent<Event>().killcnt += 1;
             Destroy(this.gameObject.transform.parent.gameObject);
         }
@@ -77,7 +80,7 @@ public class EnemyBattle1 : MonoBehaviour {
         while (true)
         {
             //delay
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f + Random.Range(0, 0.3f));
             Shoot();
             yield return new WaitForSeconds(0.1f);
             Shoot();

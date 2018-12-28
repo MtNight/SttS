@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/eskwo/Documents/Stts/SttS/Game/넥슨발표용 SttS/넥슨발표용 SttS.exe
+C:/Users/eskwo/Documents/Stts/SttS/Game/학점을 향해 쏴라!/학점을 향해 쏴라!.exe
 SceneListBegin?
 Assets/Scenes/LoadingScene.unity
 Assets/Scenes/MainMenu.unity
@@ -131,8 +131,9 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 b39358c135bed19a8e8cd70014f03627 Assembly-CSharp.dll:.Boss
+f2a98ba89481104a79080d7225179c7e Assembly-CSharp.dll:.credit
 7dcde16af3e0230ba17231b1198b3e53 Assembly-CSharp.dll:.pBullet
-4916f5a6a61bba4b4e745536c37cdcbd Assembly-CSharp.dll:.Event
+2c2a5c6b29cbdb1064d9cb4441942b7f Assembly-CSharp.dll:.Event
 5c74d198f0f9f41599a8e4ef8d38949c Assembly-CSharp.dll:.Teleport
 1dda8761f7f89ab3bcc2e1b95a3c5cb9 Assembly-CSharp.dll:.PlayerMoveRange
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -163,7 +164,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 267fca1716fd908e8d008cdf7e86a292 Assembly-CSharp.dll:.Key
-44064e9e021ce4f5e0ddcdb70100979f Assembly-CSharp.dll:.UImanage
+d94f94e12932fb6d8afbbf39fd2139af Assembly-CSharp.dll:.UImanage
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule

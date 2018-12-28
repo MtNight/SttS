@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UImanage : MonoBehaviour {
 
+    public bool uion;
     public int scenenum;
     public Text load;
     public Text main1;
@@ -29,8 +30,10 @@ public class UImanage : MonoBehaviour {
     private AudioSource audioSource;
     public AudioClip BGM1;
     public AudioClip BGM2;
+    public AudioClip BGM3;
 
     void Start () {
+        uion = true;
         scenenum = 0;
 
         boss = false;
@@ -72,141 +75,187 @@ public class UImanage : MonoBehaviour {
     }
 
     void Update () {
-        if (scenenum == 0 && SceneManager.GetActiveScene().name == "LoadingScene")
-            {
-            load.gameObject.SetActive(true);
-            game1.gameObject.SetActive(false);
-            game2.gameObject.SetActive(false);
-            game3.gameObject.SetActive(false);
-            hp.gameObject.SetActive(false);
-            bhp.gameObject.SetActive(false);
-            BG.gameObject.SetActive(false);
-            main1.gameObject.SetActive(false);
-            main2.gameObject.SetActive(false);
-            main3.gameObject.SetActive(false);
-            main4.gameObject.SetActive(false);
-            Die.gameObject.SetActive(false);
-            GtoM.gameObject.SetActive(false);
-            blackout.gameObject.SetActive(false);
-
-        }
-        else if (scenenum == 1 && SceneManager.GetActiveScene().name == "MainMenu")
+        if (uion == true)
         {
-            if (music == 0)
+            if (scenenum == 0 && SceneManager.GetActiveScene().name == "LoadingScene")
             {
-                audioSource.Stop();
-                music = 1;
-                audioSource.clip = BGM1;
-                audioSource.loop = true;
-                audioSource.Play();
-            }
-
-            load.gameObject.SetActive(false);
-            game1.gameObject.SetActive(false);
-            game2.gameObject.SetActive(false);
-            game3.gameObject.SetActive(false);
-            hp.gameObject.SetActive(false);
-            bhp.gameObject.SetActive(false);
-            BG.gameObject.SetActive(true);
-            main1.gameObject.SetActive(true);
-            main2.gameObject.SetActive(true);
-            main3.gameObject.SetActive(true);
-            main4.gameObject.SetActive(true);
-            Die.gameObject.SetActive(false);
-            GtoM.gameObject.SetActive(false);
-            blackout.gameObject.SetActive(false);
-        }
-        else if (scenenum == 2 && SceneManager.GetActiveScene().name == "GameScene")
-        {
-            if (i == null || j == null || k == null)
-            {
-                i = GameObject.Find("Event");
-                k = GameObject.Find("pBeAttackRange");
-                j = GameObject.Find("BOSS");
-            }
-            if (GameObject.Find("Player") != null)
-            {
-                if (i.GetComponent<Event>().cur <= 1)
-                {
-                    game1.text = "Sejong Square";
-                }
-                else if (i.GetComponent<Event>().cur <= 13)
-                {
-                    game1.text = "Library";
-                }
-                else if (i.GetComponent<Event>().cur <= 17)
-                {
-                    game1.text = "The Tower";
-                }
-                if (GameObject.Find("pBeAttackRange").GetComponent<PlayerBattle>() != null)
-                {
-                    game2.text = k.GetComponent<PlayerBattle>().mag + "/" + k.GetComponent<PlayerBattle>().maxMagazine;
-                    hp.value = k.GetComponent<PlayerBattle>().hp;
-                }
-                bhp.value = j.GetComponent<Boss>().hp;
-
-                load.gameObject.SetActive(false);
+                load.gameObject.SetActive(true);
+                game1.gameObject.SetActive(false);
+                game2.gameObject.SetActive(false);
+                game3.gameObject.SetActive(false);
+                hp.gameObject.SetActive(false);
+                bhp.gameObject.SetActive(false);
                 BG.gameObject.SetActive(false);
-                game1.gameObject.SetActive(true);
-                game2.gameObject.SetActive(true);
-                game3.gameObject.SetActive(true);
-                hp.gameObject.SetActive(true);
-                if (i.GetComponent<Event>().cur == 14 && music == 1)
-                {
-                    music = 2;
-                    audioSource.Stop();
-                    audioSource.clip = BGM2;
-                    audioSource.loop = true;
-                }
-                if (i.GetComponent<Event>().cur >= 17 && boss == true)
-                {
-                    bhp.gameObject.SetActive(true);
-                    if (music == 2)
-                    {
-                        audioSource.Play();
-                        music = 3;
-                    }
-                }
-                if (music == 3 && GameObject.Find("BOSS") == null)
-                {
-                    audioSource.Stop();
-                }
-                else
-                {
-                    bhp.gameObject.SetActive(false);
-                }
-                Die.gameObject.SetActive(false);
-                GtoM.gameObject.SetActive(false);
-                blackout.gameObject.SetActive(false);
                 main1.gameObject.SetActive(false);
                 main2.gameObject.SetActive(false);
                 main3.gameObject.SetActive(false);
                 main4.gameObject.SetActive(false);
+                Die.gameObject.SetActive(false);
+                GtoM.gameObject.SetActive(false);
+                blackout.gameObject.SetActive(false);
+
             }
-            else
+            else if (scenenum == 1 && SceneManager.GetActiveScene().name == "MainMenu")
             {
-                audioSource.Stop();
-                music = 0;
+                if (music == 0)
+                {
+                    audioSource.Stop();
+                    music = 1;
+                    audioSource.clip = BGM1;
+                    audioSource.loop = true;
+                    audioSource.Play();
+                }
+
                 load.gameObject.SetActive(false);
                 game1.gameObject.SetActive(false);
                 game2.gameObject.SetActive(false);
                 game3.gameObject.SetActive(false);
                 hp.gameObject.SetActive(false);
                 bhp.gameObject.SetActive(false);
-                Die.gameObject.SetActive(true);
-                GtoM.gameObject.SetActive(true);
-                blackout.gameObject.SetActive(true);
-                Vector3 tmp = GameObject.Find("Game Camera").transform.position;
-                tmp.z = 1;
-                blackout.transform.position = tmp;
-                tmp = new Vector3(8, 8, 1);
-                blackout.transform.localScale = tmp;
-                main1.gameObject.SetActive(false);
-                main2.gameObject.SetActive(false);
-                main3.gameObject.SetActive(false);
-                main4.gameObject.SetActive(false);
-                BG.gameObject.SetActive(false);
+                BG.gameObject.SetActive(true);
+                main1.gameObject.SetActive(true);
+                main2.gameObject.SetActive(true);
+                main3.gameObject.SetActive(true);
+                main4.gameObject.SetActive(true);
+                Die.gameObject.SetActive(false);
+                GtoM.gameObject.SetActive(false);
+                blackout.gameObject.SetActive(false);
             }
+            else if (scenenum == 2 && SceneManager.GetActiveScene().name == "GameScene")
+            {
+                if (i == null || j == null || k == null)
+                {
+                    i = GameObject.Find("Event");
+                    k = GameObject.Find("pBeAttackRange");
+                    j = GameObject.Find("BOSS");
+                }
+                if (GameObject.Find("Player") != null)
+                {
+                    if (i.GetComponent<Event>().cur <= 1)
+                    {
+                        game1.text = "Sejong Square";
+                    }
+                    else if (i.GetComponent<Event>().cur <= 13)
+                    {
+                        game1.text = "Library";
+                    }
+                    else if (i.GetComponent<Event>().cur <= 17)
+                    {
+                        game1.text = "The Tower";
+                    }
+                    else
+                    {
+                        game1.text = "The End";
+                    }
+                    if (GameObject.Find("pBeAttackRange").GetComponent<PlayerBattle>() != null)
+                    {
+                        game2.text = k.GetComponent<PlayerBattle>().mag + "/" + k.GetComponent<PlayerBattle>().maxMagazine;
+                        hp.value = k.GetComponent<PlayerBattle>().hp;
+                    }
+                    if (j != null)
+                    {
+                        bhp.value = j.GetComponent<Boss>().hp;
+                    }
+
+                    load.gameObject.SetActive(false);
+                    BG.gameObject.SetActive(false);
+                    game1.gameObject.SetActive(true);
+                    game2.gameObject.SetActive(true);
+                    game3.gameObject.SetActive(true);
+                    hp.gameObject.SetActive(true);
+                    if (i.GetComponent<Event>().cur == 14 && music == 1)
+                    {
+                        music = 2;
+                        audioSource.Stop();
+                        audioSource.clip = BGM2;
+                        audioSource.loop = true;
+                    }
+                    if (i.GetComponent<Event>().cur >= 17 && boss == true)
+                    {
+                        bhp.gameObject.SetActive(true);
+                        if (music == 2)
+                        {
+                            audioSource.Play();
+                            music = 3;
+                        }
+                    }
+                    else
+                    {
+                        bhp.gameObject.SetActive(false);
+                    }
+                    Die.gameObject.SetActive(false);
+                    GtoM.gameObject.SetActive(false);
+                    blackout.gameObject.SetActive(false);
+                    main1.gameObject.SetActive(false);
+                    main2.gameObject.SetActive(false);
+                    main3.gameObject.SetActive(false);
+                    main4.gameObject.SetActive(false);
+                }
+                else
+                {   //die
+                    audioSource.Stop();
+                    music = 0;
+                    load.gameObject.SetActive(false);
+                    game1.gameObject.SetActive(false);
+                    game2.gameObject.SetActive(false);
+                    game3.gameObject.SetActive(false);
+                    hp.gameObject.SetActive(false);
+                    bhp.gameObject.SetActive(false);
+                    Die.gameObject.SetActive(true);
+                    GtoM.gameObject.SetActive(true);
+                    blackout.gameObject.SetActive(true);
+                    Vector3 tmp = GameObject.Find("Game Camera").transform.position;
+                    tmp.z = 1;
+                    blackout.transform.position = tmp;
+                    tmp = new Vector3(8, 8, 1);
+                    blackout.transform.localScale = tmp;
+                    main1.gameObject.SetActive(false);
+                    main2.gameObject.SetActive(false);
+                    main3.gameObject.SetActive(false);
+                    main4.gameObject.SetActive(false);
+                    BG.gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {   //ending
+            load.gameObject.SetActive(false);
+            main1.gameObject.SetActive(false);
+            main2.gameObject.SetActive(false);
+            main3.gameObject.SetActive(false);
+            main4.gameObject.SetActive(false);
+            BG.gameObject.SetActive(false);
+            game1.gameObject.SetActive(false);
+            game2.gameObject.SetActive(false);
+            game3.gameObject.SetActive(false);
+            hp.gameObject.SetActive(false);
+            bhp.gameObject.SetActive(false);
+            Die.gameObject.SetActive(false);
+            GtoM.gameObject.SetActive(false);
+            blackout.gameObject.SetActive(false);
+            if (music == 4)
+            {
+                audioSource.Play();
+                music = 5;
+            }
+        }
+    }
+
+    IEnumerator Ending()
+    {
+        while (true)
+        {
+            audioSource.Stop();
+            audioSource.clip = BGM3;
+            audioSource.loop = false;
+            music = 4;
+            uion = false;
+            yield return new WaitForSeconds(2.0f);
+            GameObject.Find("endingcredit").GetComponent<credit>().act = true;
+            yield return new WaitForSeconds(112.0f);
+            GameObject.Find("Scenemove").GetComponent<Scenemoving>().GtoM();
+            uion = true;
+            yield break;
         }
     }
 }

@@ -62,7 +62,6 @@ GameObject:
   - component: {fileID: 114905911161105566}
   - component: {fileID: 50245190715845736}
   - component: {fileID: 61581129918899626}
-  - component: {fileID: 114727965571658202}
   - component: {fileID: 82924923964238790}
   m_Layer: 10
   m_Name: eMoverange
@@ -129,7 +128,7 @@ Rigidbody2D:
   m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!50 &50245190715845736
@@ -149,7 +148,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!50 &50375523695522880
@@ -169,7 +168,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &61581129918899626
@@ -572,8 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d416f35072f99024e85c3a49558caf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  l: 0
-  r: 0
+  el: 0
+  er: 0
   jumping: 0
   jumpable: 0
   attackcool: 0
@@ -584,17 +583,6 @@ MonoBehaviour:
   moveArrow: {x: 0, y: 0, z: 0}
   dir: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
---- !u!114 &114727965571658202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1698259683110094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13f953297943a094383b5c665e94c854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114905911161105566
 MonoBehaviour:
   m_ObjectHideFlags: 1
