@@ -11,7 +11,7 @@ public class Item_Cof : MonoBehaviour
         {
             if (other.transform.parent.tag == "Player" && other.gameObject.GetComponent<PlayerBattle>()!=null)
             {
-                other.gameObject.GetComponent<PlayerBattle>().hp += 200;
+                other.gameObject.GetComponent<PlayerBattle>().hp += 150;
                 Destroy(this.gameObject);
             }
         }

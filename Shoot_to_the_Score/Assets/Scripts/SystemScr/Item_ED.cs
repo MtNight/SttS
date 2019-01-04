@@ -8,7 +8,7 @@ public class Item_ED : MonoBehaviour {
         if (other.tag == "Range")
         {
             if (other.transform.parent.gameObject.tag == "Player" && other.gameObject.GetComponent<PlayerBattle>() != null) {
-                other.gameObject.GetComponent<PlayerBattle>().hp += 150;
+                other.gameObject.GetComponent<PlayerBattle>().hp += 100;
                 other.transform.parent.gameObject.GetComponent<PlayerMove>().StartCoroutine("ED");
                 Destroy(this.gameObject);
             }

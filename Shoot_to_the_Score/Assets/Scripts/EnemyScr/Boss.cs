@@ -29,10 +29,8 @@ public class Boss : MonoBehaviour {
     public AudioClip MoveSound;
 
     void Start () {
-        //maxhp = 15000;
-        //hp = 15000;
-        maxhp = 1000;
-        hp = 1000;
+        maxhp = 15000;
+        hp = 15000;
         stat = -3;
         invin = true;
         start = false;

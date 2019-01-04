@@ -2149,6 +2149,7 @@ GameObject:
   - component: {fileID: 1333452692}
   - component: {fileID: 1333452694}
   - component: {fileID: 1333452693}
+  - component: {fileID: 1333452695}
   m_Layer: 5
   m_Name: Mapname
   m_TagString: Untagged
@@ -2213,6 +2214,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1333452691}
+--- !u!114 &1333452695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1333452691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1337552369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2238,7 @@ GameObject:
   - component: {fileID: 1337552370}
   - component: {fileID: 1337552372}
   - component: {fileID: 1337552371}
+  - component: {fileID: 1337552373}
   m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
@@ -2287,6 +2303,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1337552369}
+--- !u!114 &1337552373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1337552369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1409209924
 GameObject:
   m_ObjectHideFlags: 0
